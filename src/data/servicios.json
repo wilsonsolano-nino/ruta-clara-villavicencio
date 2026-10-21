@@ -1,0 +1,75 @@
+{
+  "_nota": "Solo se muestran como vigentes los servicios con fuente oficial y fecha de verificación dentro de la ventana de 30 días. Los registros 'por verificar' no exponen su contacto en la interfaz.",
+  "servicios": [
+    {
+      "id": "linea-106",
+      "nombre": "Línea 106 · Línea nacional de salud mental",
+      "descripcion": "Línea telefónica de orientación en salud mental, disponible todo el día.",
+      "ambito": "nacional",
+      "canales": [{ "tipo": "llamada", "valor": "106", "etiqueta": "Llamar al 106" }],
+      "horario": "24 horas, 7 días",
+      "costo": "Gratuita",
+      "fuente": {
+        "nombre": "Directorio de salud mental y prevención del suicidio, MinSalud",
+        "url": ""
+      },
+      "fechaVerificacion": "2026-10-19",
+      "verificadoPor": "Organización de la Hackathon (citado en el kickoff, diapositiva 12)"
+    },
+    {
+      "id": "yo-te-escucho",
+      "nombre": "Yo Te Escucho Villavicencio",
+      "descripcion": "Línea de la Alcaldía de Villavicencio para escucha y orientación, por llamada y WhatsApp.",
+      "ambito": "villavicencio",
+      "canales": [
+        { "tipo": "llamada", "valor": "3163907010", "etiqueta": "Llamar al 316 390 7010" },
+        { "tipo": "whatsapp", "valor": "573163907010", "etiqueta": "Escribir por WhatsApp" }
+      ],
+      "horario": "24 horas, 7 días",
+      "costo": "Gratuita",
+      "fuente": {
+        "nombre": "Directorio de salud mental y prevención del suicidio, MinSalud",
+        "url": ""
+      },
+      "fechaVerificacion": "2026-10-19",
+      "verificadoPor": "Organización de la Hackathon (citado en el kickoff, diapositiva 12)"
+    },
+    {
+      "id": "linea-018000931089",
+      "nombre": "Línea gratuita 01 8000 (titular por confirmar)",
+      "descripcion": "Número listado en el kickoff junto a las líneas de apoyo. Falta confirmar en la fuente original a qué entidad pertenece.",
+      "ambito": "nacional",
+      "canales": [{ "tipo": "llamada", "valor": "018000931089", "etiqueta": "Llamar al 01 8000 931 089" }],
+      "horario": "Por confirmar",
+      "costo": "Gratuita",
+      "fuente": null,
+      "fechaVerificacion": null,
+      "verificadoPor": null
+    },
+    {
+      "id": "linea-123",
+      "nombre": "Línea 123 · Emergencias",
+      "descripcion": "Número único de emergencias. Pendiente de registrar fuente oficial y fecha de consulta.",
+      "ambito": "nacional",
+      "canales": [{ "tipo": "llamada", "valor": "123", "etiqueta": "Llamar al 123" }],
+      "horario": "24 horas, 7 días",
+      "costo": "Gratuita",
+      "emergencia": true,
+      "fuente": null,
+      "fechaVerificacion": null,
+      "verificadoPor": null
+    },
+    {
+      "id": "secretaria-salud-villavicencio",
+      "nombre": "Secretaría Local de Salud de Villavicencio · atención presencial",
+      "descripcion": "Información presencial sobre rutas de atención en salud mental del municipio. Dirección y horario pendientes de verificar.",
+      "ambito": "villavicencio",
+      "canales": [{ "tipo": "presencial", "valor": "", "etiqueta": "Ver dirección" }],
+      "horario": "Por confirmar",
+      "costo": "Gratuita",
+      "fuente": null,
+      "fechaVerificacion": null,
+      "verificadoPor": null
+    }
+  ]
+}
