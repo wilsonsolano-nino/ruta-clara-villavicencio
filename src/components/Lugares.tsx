@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Lugar } from '../logic/tipos';
 import { evaluarVigencia } from '../logic/vigencia';
 import { destinoLugar, TarjetaLugar } from './TarjetaLugar';
+import { ConsejosCarga } from './ConsejosCarga';
 
 interface Props {
   lugares: Lugar[];
@@ -11,6 +12,7 @@ interface Props {
 /** Instituciones con servicios de salud mental en Villavicencio. El mapa de Google solo se carga cuando la persona lo pide. */
 export function Lugares({ lugares, hoy }: Props) {
   const [mapaAceptado, setMapaAceptado] = useState(false);
+  const [mapaCargando, setMapaCargando] = useState(false);
   const [elegido, setElegido] = useState<string | null>(null);
 
   const vigentes = lugares.filter((l) => evaluarVigencia(l, hoy).mostrable);
@@ -18,8 +20,14 @@ export function Lugares({ lugares, hoy }: Props) {
 
   const verEnMapa = (id: string) => {
     setMapaAceptado(true);
+    setMapaCargando(true);
     setElegido(id);
     document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const mostrarMapa = () => {
+    setMapaAceptado(true);
+    setMapaCargando(true);
   };
 
   return (
@@ -31,22 +39,26 @@ export function Lugares({ lugares, hoy }: Props) {
 
       <div id="mapa">
         {mapaAceptado && enMapa ? (
-          <figure className="mapa">
-            <iframe
-              key={enMapa.id}
-              title={`Mapa: ${enMapa.nombre}`}
-              src={`https://maps.google.com/maps?q=${encodeURIComponent(destinoLugar(enMapa))}&z=16&hl=es&output=embed`}
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-            <figcaption>{enMapa.nombre}. {enMapa.direccion}.</figcaption>
-          </figure>
+          <>
+            {mapaCargando && <ConsejosCarga titulo="Estamos preparando el mapa" />}
+            <figure className={mapaCargando ? 'mapa mapa-oculto' : 'mapa'}>
+              <iframe
+                key={enMapa.id}
+                title={`Mapa: ${enMapa.nombre}`}
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(destinoLugar(enMapa))}&z=16&hl=es&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                onLoad={() => setMapaCargando(false)}
+              />
+              <figcaption>{enMapa.nombre}. {enMapa.direccion}.</figcaption>
+            </figure>
+          </>
         ) : (
           <div className="permiso" role="region" aria-labelledby="permiso-titulo">
             <h3 id="permiso-titulo">Mapa de Google</h3>
             <p>El mapa lo muestra Google Maps y solo se carga si lo pides. Al cargarlo, Google recibe tu dirección IP y el lugar que estás viendo. Ruta Clara no le envía tu ubicación ni otros datos.</p>
             <div className="acciones-final">
-              <button type="button" className="boton" onClick={() => setMapaAceptado(true)}>Mostrar el mapa</button>
+              <button type="button" className="boton" onClick={mostrarMapa}>Mostrar el mapa</button>
             </div>
           </div>
         )}

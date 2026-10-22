@@ -112,6 +112,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .intro p { margin-top: 12px; color: var(--tinta-2); font-size: 1.1rem; }
 .subtitulo { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 44px 0 6px; }
 .nota { color: var(--tinta-2); font-size: 0.95rem; margin-bottom: 12px; }
+.carga-inicial { max-width: 640px; margin: 48px auto; padding: 0 20px; }
+.carga-inicial h1 { font-family: var(--serif); font-weight: 600; font-size: 2rem; line-height: 1.2; margin-bottom: 16px; }
+.carga-inicial p + p { margin-top: 12px; }
+.carga-consejo {
+  max-width: 640px;
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--salvia);
+  border-left: 4px solid var(--salvia-fuerte);
+  border-radius: var(--radio);
+}
+.carga-consejo-titulo { font-family: var(--serif); font-weight: 600; margin-bottom: 8px; }
+.carga-consejo-cita { margin-top: 10px; color: var(--tinta-2); font-style: italic; }
 
 /* Respuesta visual a cada paso: el contenido nuevo entra suave */
 @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } }
@@ -285,6 +298,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .permiso .acciones-final { margin-top: 18px; }
 .mapa { margin: 0 0 8px; }
 .mapa iframe { display: block; width: 100%; height: 340px; border: 0; border-radius: var(--radio); background: var(--hoja); }
+.mapa-oculto { display: none; }
 .mapa figcaption { font-size: 0.9rem; color: var(--tinta-2); margin-top: 6px; }
 .guia-en-resultado { margin: 20px 0 8px; max-width: 64ch; }
 .guia-en-resultado .guia-pautas { margin: 10px 0 12px; gap: 10px; }
