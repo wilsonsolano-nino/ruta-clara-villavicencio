@@ -8,20 +8,22 @@ const servicios = datos.servicios as Servicio[];
 const recursos = datosRecursos.recursos as Recurso[];
 
 describe('Integridad del directorio real (servicios.json)', () => {
-  it('CP-19 · Todo servicio mostrable tiene fuente, fecha y responsable de verificación', () => {
+  it('CP-19 · Todo servicio mostrable tiene fuente con enlace oficial, fecha y responsable de verificación', () => {
     for (const s of servicios) {
-      const v = evaluarVigencia(s, '2026-10-20');
+      const v = evaluarVigencia(s, '2026-10-21');
       if (v.mostrable) {
         expect(s.fuente?.nombre).toBeTruthy();
+        expect(s.fuente?.url).toMatch(/^https:\/\/[^/]*\.gov\.co\//);
         expect(s.fechaVerificacion).toBeTruthy();
         expect(s.verificadoPor).toBeTruthy();
       }
     }
   });
 
-  it('CP-20 · Los datos sin fuente (p. ej. 123, 01 8000) quedan "por verificar" y no se exponen', () => {
-    const pendientes = servicios.filter((s) => !evaluarVigencia(s, '2026-10-20').mostrable).map((s) => s.id);
-    expect(pendientes).toEqual(expect.arrayContaining(['linea-123', 'linea-018000931089']));
+  it('CP-20 · Los datos sin fuente quedan "por verificar" y no se exponen; 123, 106 y Yo Te Escucho tienen fuente', () => {
+    const evaluar = (hoy: string) => servicios.filter((s) => evaluarVigencia(s, hoy).mostrable).map((s) => s.id);
+    expect(evaluar('2026-10-21')).not.toContain('secretaria-salud-villavicencio');
+    expect(evaluar('2026-10-21')).toEqual(expect.arrayContaining(['linea-123', 'linea-106', 'yo-te-escucho']));
   });
 
   it('CP-21 · Los identificadores son únicos y cada servicio tiene al menos un canal', () => {

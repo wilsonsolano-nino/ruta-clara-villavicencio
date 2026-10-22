@@ -1,10 +1,10 @@
 # Ruta Clara Villavicencio
 
-**La ayuda correcta, más cerca.** Prototipo TRL 4 para el reto **Mente Sana Joven** de la Hackathon Villavicencio 2026.
+**La ayuda correcta, más cerca.** Prototipo TRL 4 para el reto **Mente Sana Joven** de la Hackathon Villavicencio 2026, hecho por el equipo **DevSystems**: Wilson Solano, Alejandro Diaz y Carlos Arciniegas.
 
 > ¿Cómo podemos ayudar a jóvenes de Villavicencio a encontrar información confiable, entender las rutas de apoyo disponibles y llegar a ellas a tiempo?
 
-Ruta Clara Villavicencio es una web app instalable (PWA) que acorta la distancia entre un joven y el canal oficial de apoyo adecuado. **No diagnostica, no evalúa riesgo y no es un servicio de salud.** Solo orienta hacia servicios humanos oficiales, y cada dato lleva su fuente y fecha de verificación.
+Ruta Clara Villavicencio es una web app, que también se puede agregar a la pantalla de inicio del celular, que acorta la distancia entre un joven y el canal oficial de apoyo adecuado. **No diagnostica, no evalúa riesgo y no es un servicio de salud.** Solo orienta hacia servicios humanos oficiales, y cada dato lleva su fuente y fecha de verificación.
 
 ## Funciones críticas (las que demuestran TRL 4)
 
@@ -22,29 +22,35 @@ Requisitos: Node.js 18 o superior.
 npm install
 npm run dev        # abre http://localhost:5173
 npm test           # corre los 24 casos de prueba
-npm run evidencia  # regenera docs/evidencia/resultados-pruebas.md
+npm run evidencia  # corre las pruebas y regenera docs/evidencia/resultados-pruebas.md
 npm run build      # genera /dist para publicar (Vercel, Netlify, GitHub Pages)
 ```
 
 Además del orientador y el directorio, la app incluye **Recursos** (guías de autocuidado y de cómo acompañar a otra persona, cada una con fuente oficial y fecha de consulta), **preguntas frecuentes** en "Cómo funciona" y la **política de tratamiento de datos** basada en la Ley 1581 de 2012 y el Decreto 1377 de 2013, enlazada en el pie de página.
 
-La app no guarda nada de lo que hace la persona: no hay registro, formularios ni reportes; solo el navegador recuerda el modo oscuro si se activa.
+La app no guarda nada de lo que hace la persona: no hay registro, formularios ni reportes; solo el navegador recuerda el modo oscuro si se activa. Necesita internet: no funciona sin conexión.
 
 Cada vista tiene su URL (`#orientar`, `#directorio`, `#lugares`, `#recursos`, `#como`, `#privacidad`), así que el botón "atrás" del celular funciona.
 
 ## Estructura
 
 ```
+index.html                 ← página de entrada, SEO y texto de respaldo
 src/
-  data/servicios.json      ← directorio: único lugar donde se editan los datos
+  data/servicios.json      ← líneas de apoyo: único lugar donde se editan los teléfonos
   data/recursos.json       ← guías informativas, con fuentes y fecha de consulta
   data/lugares.json        ← lugares del mapa (REPS de MinSalud), con fuente, fecha y origen del punto
   logic/vigencia.ts        ← regla de salvaguarda (fuente + fecha + 30 días)
   logic/orientador.ts      ← árbol de decisión sin evaluación de riesgo
   components/              ← interfaz React accesible
+public/                    ← logo, íconos, manifest y robots.txt (se copian tal cual a la web)
 tests/                     ← 24 casos de prueba con datos sintéticos
-docs/                      ← entregables de la hackathon
+scripts/                   ← convierte el resultado de las pruebas en la tabla de evidencia
+docs/                      ← entregables de la hackathon y evidencia de pruebas
+vite.config.ts             ← configuración de Vite (compilación) y Vitest (pruebas)
 ```
+
+Solo `index.html`, `src/` y `public/` forman la web publicada (`npm run build` genera `dist/`). Lo demás es para desarrollar, probar y entregar.
 
 ## Entregables
 
@@ -61,4 +67,14 @@ docs/                      ← entregables de la hackathon
 
 ## Aviso
 
-Este es un prototipo académico, probado solo con datos sintéticos y escenarios ficticios. No es un servicio de salud. Si tú o alguien necesita apoyo: **Línea 106** (24/7) · **Yo Te Escucho Villavicencio 316 390 7010** (llamada y WhatsApp, 24/7). Fuente: Directorio de salud mental y prevención del suicidio, MinSalud, consultado el 19 oct 2026.
+Este es un prototipo académico, probado solo con datos sintéticos y escenarios ficticios. No es un servicio de salud. Si tú o alguien necesita apoyo:
+
+- **Emergencias: 123** (24/7, sin costo). Fuente: [Resolución CRC 5937 de 2020](https://cancilleria.gov.co/sites/default/files/Normograma/docs/resolucion_crc_5937_2020.htm).
+- **Línea 106**, línea nacional de salud mental (24/7, gratuita). Fuente: [MinSalud](https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx).
+- **Yo Te Escucho Villavicencio: 316 390 7010 o 01 8000 931 089** (llamada y WhatsApp, 24/7). Fuente: [Directorio Nacional de Líneas Territoriales de MinSalud, agosto 2025](https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf).
+
+Datos consultados el 21 oct 2026.
+
+## Licencia
+
+MIT © 2026 DevSystems (Wilson Solano, Alejandro Diaz, Carlos Arciniegas). Ver [LICENSE](LICENSE).

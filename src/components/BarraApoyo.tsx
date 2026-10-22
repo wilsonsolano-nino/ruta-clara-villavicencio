@@ -6,9 +6,11 @@ import { evaluarVigencia } from '../logic/vigencia';
  * En escritorio es un panel lateral fijo; en móvil, una barra fija abajo (ver styles.css).
  */
 export function BarraApoyo({ servicios, hoy }: { servicios: Servicio[]; hoy: string }) {
+  // El número de emergencias va primero; después, una llamada por línea 24 h.
   const lineas = servicios
     .filter((s) => s.horario.includes('24') && evaluarVigencia(s, hoy).mostrable)
-    .flatMap((s) => s.canales.filter((c) => c.tipo === 'llamada').map((c) => ({ s, c })))
+    .sort((a, b) => Number(!!b.emergencia) - Number(!!a.emergencia))
+    .flatMap((s) => s.canales.filter((c) => c.tipo === 'llamada').slice(0, 1).map((c) => ({ s, c })))
     .slice(0, 2);
 
   return (

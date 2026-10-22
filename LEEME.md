@@ -93,8 +93,7 @@ Cada vista tiene su propia dirección, así que el botón "atrás" del celular f
 
 En orden de prioridad. Si tomas uno, escribe tu nombre al lado.
 
-- [ ] **Completar la declaración del equipo:** nombre del equipo e integrantes con su rol en `docs/05-declaracion-del-equipo.md`. Es un entregable obligatorio.
-- [ ] **Registrar la URL exacta de la fuente** (directorio de MinSalud) en `src/data/servicios.json` → `fuente.url`, y la fecha en que la consultamos.
+- [ ] **Agregar el rol de cada integrante** en `docs/05-declaracion-del-equipo.md`. Es un entregable obligatorio.
 - [ ] **Cambiar `verificadoPor`** en `servicios.json` por el nombre de quien verificó cada dato.
 - [ ] **Anotar la retroalimentación de mentorías** en la tabla de `docs/03-registro-fuentes-y-cambios.md`. El jurado lo pide explícitamente.
 - [ ] **Ensayar la demo completa** en el computador del pitch siguiendo `docs/06-guion-pitch.md` (orientador, mapa, recursos y política de datos). El mapa necesita internet.
@@ -107,8 +106,6 @@ La app no los muestra hasta tener fuente oficial y fecha. Si alguien consigue la
 
 | Dato | Qué falta |
 |---|---|
-| Línea 01 8000 931 089 | Confirmar a qué entidad pertenece (aparece en el kickoff sin nombre) |
-| Línea 123 (emergencias) | Fuente oficial y fecha de consulta |
 | Secretaría Local de Salud de Villavicencio | Dirección y horario desde villavicencio.gov.co |
 
 **No inventamos ni copiamos números de redes sociales:** solo fuentes oficiales con fecha. Para los lugares del mapa, la fuente es el REPS de MinSalud; las sedes descartadas y el porqué están en `docs/03-registro-fuentes-y-cambios.md`.

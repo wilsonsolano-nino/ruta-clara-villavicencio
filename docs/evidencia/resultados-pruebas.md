@@ -1,6 +1,6 @@
 # Resultados de pruebas controladas · Ruta Clara Villavicencio
 
-Ejecución: 21/10/2026, 8:03:12 p. m. (hora Colombia) · Herramienta: Vitest · Datos: sintéticos y escenarios ficticios
+Ejecución: 21/10/2026, 9:21:21 p. m. (hora Colombia) · Herramienta: Vitest · Datos: sintéticos y escenarios ficticios
 
 **24 de 24 casos aprobados.**
 
@@ -21,14 +21,14 @@ Ejecución: 21/10/2026, 8:03:12 p. m. (hora Colombia) · Herramienta: Vitest ·
 | CP-13 | "Sofía" (ficticia) pregunta por un amigo → consejos para acompañar y líneas, sin segunda pregunta | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
 | CP-14 | Canal pedido sin oferta vigente → respaldo con otros canales y lo explica | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
 | CP-15 | Sin ningún dato vigente → no muestra teléfonos y remite a fuente oficial | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
-| CP-16 | Cada resultado explica la regla aplicada ("por qué") | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 1 ms |
-| CP-17 | Salvaguarda: las preguntas no piden síntomas, diagnóstico ni datos personales | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 1 ms |
+| CP-16 | Cada resultado explica la regla aplicada ("por qué") | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
+| CP-17 | Salvaguarda: las preguntas no piden síntomas, diagnóstico ni datos personales | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
 | CP-18 | Cada propósito lleva a un resultado distinto (sin respuestas redundantes) | Función crítica 2 · Orientador por tipo de consulta (escenarios ficticios) | ✅ Aprobado | 0 ms |
-| CP-19 | Todo servicio mostrable tiene fuente, fecha y responsable de verificación | Integridad del directorio real (servicios.json) | ✅ Aprobado | 2 ms |
-| CP-20 | Los datos sin fuente (p. ej. 123, 01 8000) quedan "por verificar" y no se exponen | Integridad del directorio real (servicios.json) | ✅ Aprobado | 1 ms |
+| CP-19 | Todo servicio mostrable tiene fuente con enlace oficial, fecha y responsable de verificación | Integridad del directorio real (servicios.json) | ✅ Aprobado | 2 ms |
+| CP-20 | Los datos sin fuente quedan "por verificar" y no se exponen; 123, 106 y Yo Te Escucho tienen fuente | Integridad del directorio real (servicios.json) | ✅ Aprobado | 2 ms |
 | CP-21 | Los identificadores son únicos y cada servicio tiene al menos un canal | Integridad del directorio real (servicios.json) | ✅ Aprobado | 0 ms |
 | CP-22 | Cada guía cita al menos una fuente con enlace y una fecha de consulta válida | Recursos informativos (recursos.json) | ✅ Aprobado | 1 ms |
 | CP-23 | Las guías no usan lenguaje de diagnóstico ni de tratamiento | Recursos informativos (recursos.json) | ✅ Aprobado | 1 ms |
-| CP-24 | Cada lugar cita el REPS, tiene código de habilitación de Villavicencio, fecha vigente y su punto cae dentro del municipio | Lugares de atención presencial (lugares.json) | ✅ Aprobado | 3 ms |
+| CP-24 | Cada lugar cita el REPS, tiene código de habilitación de Villavicencio, fecha vigente y su punto cae dentro del municipio | Lugares de atención presencial (lugares.json) | ✅ Aprobado | 2 ms |
 
 Regenerar con `npm run evidencia`.

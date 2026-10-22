@@ -144,7 +144,7 @@ export default function App() {
             <a href="#privacidad">Política de tratamiento de datos</a>
             <p>No pedimos datos personales ni guardamos nada de lo que haces. El mapa de Google solo se carga si lo pides. Ley 1581 de 2012.</p>
           </div>
-          <p className="pie-legal">Hackathon Villavicencio 2026 · Reto Mente Sana Joven</p>
+          <p className="pie-legal">Hackathon Villavicencio 2026 · Reto Mente Sana Joven<br />Equipo DevSystems: Wilson Solano, Alejandro Diaz y Carlos Arciniegas</p>
         </div>
       </footer>
 

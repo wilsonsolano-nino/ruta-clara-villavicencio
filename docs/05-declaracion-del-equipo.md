@@ -1,7 +1,7 @@
 # 5. Declaración del equipo
 
-**Equipo:** _[nombre del equipo]_
-**Integrantes:** _[nombre completo · rol]_ · _[nombre completo · rol]_ · _[nombre completo · rol]_
+**Equipo:** DevSystems
+**Integrantes:** Wilson Solano · Alejandro Diaz · Carlos Arciniegas
 **Categoría:** 2 · Joven (18 a 28 años) · Reto Mente Sana Joven
 
 ## Trabajo previo
@@ -16,7 +16,7 @@ No hay trabajo previo. El proyecto se inició el 20 de octubre de 2026, después
 | Visual Studio Code | Editor | MIT (código base) / licencia de Microsoft |
 | Node.js | Entorno de ejecución | MIT |
 | Git | Control de versiones | GPL-2.0 |
-| Playwright + Chromium | Capturas automatizadas de la interfaz | Apache-2.0 / BSD |
+| Microsoft Edge (Chromium, modo sin ventana) | Capturas automatizadas de la interfaz | Licencia de Microsoft |
 
 > La IA **no** forma parte del producto. La app no usa IA en tiempo de ejecución: el orientador es un árbol de reglas fijo.
 
@@ -35,7 +35,7 @@ No hay trabajo previo. El proyecto se inició el 20 de octubre de 2026, después
 
 ## Datos
 
-- **Datos de contacto:** públicos, del directorio de MinSalud citado en el kickoff.
+- **Datos de contacto:** públicos. El 106 y Yo Te Escucho salen de MinSalud (página de la Línea 106 y directorio nacional de líneas territoriales, agosto 2025); el 123, de la regulación de la Comisión de Regulación de Comunicaciones. Cada uno tiene enlace y fecha en `src/data/servicios.json`.
 - **Lugares del mapa:** públicos, del Registro Especial de Prestadores (REPS) de MinSalud en datos.gov.co. Las coordenadas salen del sitio oficial del hospital, de OpenStreetMap (licencia ODbL) o de un directorio público, y se indica cuál en cada lugar.
 - **Datos de prueba:** 100 % sintéticos (`tests/escenarios.ts`).
 - **No se usan** datos personales, datos de salud reales ni credenciales. El repositorio no contiene llaves API.

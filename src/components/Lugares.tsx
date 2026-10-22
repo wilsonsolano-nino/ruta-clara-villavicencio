@@ -20,7 +20,8 @@ export function Lugares({ lugares, hoy }: Props) {
 
   const verEnMapa = (id: string) => {
     setMapaAceptado(true);
-    setMapaCargando(true);
+    // Si el lugar ya está en el mapa, el iframe no se recarga y no llegaría otro onLoad.
+    if (!mapaAceptado || id !== enMapa?.id) setMapaCargando(true);
     setElegido(id);
     document.getElementById('mapa')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -46,7 +47,6 @@ export function Lugares({ lugares, hoy }: Props) {
                 key={enMapa.id}
                 title={`Mapa: ${enMapa.nombre}`}
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(destinoLugar(enMapa))}&z=16&hl=es&output=embed`}
-                loading="lazy"
                 referrerPolicy="no-referrer"
                 onLoad={() => setMapaCargando(false)}
               />

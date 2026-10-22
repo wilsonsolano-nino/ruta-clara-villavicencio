@@ -1,8 +1,8 @@
 {
-  "name": "rutaclara-villa",
+  "name": "ruta-clara-villavicencio",
   "private": true,
   "version": "0.4.0",
-  "description": "RutaClara Villa — prototipo TRL 4 para el reto Mente Sana Joven (Hackathon Villavicencio 2026)",
+  "description": "Ruta Clara Villavicencio — prototipo TRL 4 para el reto Mente Sana Joven (Hackathon Villavicencio 2026)",
   "type": "module",
   "license": "MIT",
   "scripts": {
