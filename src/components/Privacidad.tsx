@@ -88,7 +88,7 @@ export function Privacidad() {
 
       <h3 className="subtitulo">Responsable y vigencia</h3>
       <ul className="lista-numerada">
-        <li><strong>Responsable en el prototipo:</strong> el equipo Ruta Clara Villavicencio, participante de la Hackathon Villavicencio 2026, reto Mente Sana Joven. El prototipo no recoge datos personales en ningún servidor.</li>
+        <li><strong>Responsable en el prototipo:</strong> el equipo DevSystems (Wilson Solano, Alejandro Diaz y Carlos Arciniegas), creador de Ruta Clara Villavicencio y participante de la Hackathon Villavicencio 2026, reto Mente Sana Joven. El prototipo no recoge datos personales en ningún servidor.</li>
         <li><strong>En operación:</strong> la entidad que opere Ruta Clara (por ejemplo, la Alcaldía de Villavicencio) será la responsable y publicará aquí su domicilio, correo, teléfono y el área que atiende peticiones, consultas y reclamos, como exige el Decreto 1377 de 2013 (art. 13).</li>
         <li><strong>Vigencia:</strong> esta política rige desde el 21 oct 2026. Si cambia, lo informaremos en esta página antes de aplicar el cambio.</li>
       </ul>

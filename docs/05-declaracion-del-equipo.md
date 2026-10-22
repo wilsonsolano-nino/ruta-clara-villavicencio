@@ -1,7 +1,7 @@
 # 5. Declaración del equipo
 
-**Equipo:** _[nombre del equipo]_
-**Integrantes:** _[nombre completo · rol]_ · _[nombre completo · rol]_ · _[nombre completo · rol]_
+**Equipo:** DevSystems
+**Integrantes:** Wilson Solano · Alejandro Diaz · Carlos Arciniegas
 **Categoría:** 2 · Joven (18 a 28 años) · Reto Mente Sana Joven
 
 ## Trabajo previo
