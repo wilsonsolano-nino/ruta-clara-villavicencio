@@ -301,6 +301,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .permiso p + p { margin-top: 8px; color: var(--tinta-2); font-size: 0.95rem; }
 .permiso .acciones-final { margin-top: 18px; }
 .mapa { margin: 0 0 8px; }
+.mapa-cargando {
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--salvia);
+  border-left: 4px solid var(--salvia-fuerte);
+  border-radius: var(--radio);
+  color: var(--tinta-2);
+  font-family: var(--serif);
+  font-weight: 600;
+}
+.mapa-cargando-titulo { margin-bottom: 8px; }
+.mapa-cargando-cita { margin-top: 10px; color: var(--tinta-2); font-style: italic; }
+.mapa-cargando-fuente { margin-top: 12px; font-family: var(--sans); font-size: 0.85rem; font-weight: 400; }
 .mapa iframe { display: block; width: 100%; height: 340px; border: 0; border-radius: var(--radio); background: var(--hoja); }
 .mapa-oculto { display: none; }
 .mapa figcaption { font-size: 0.9rem; color: var(--tinta-2); margin-top: 6px; }

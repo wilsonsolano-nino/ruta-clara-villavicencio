@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Lugar } from '../logic/tipos';
 import { evaluarVigencia } from '../logic/vigencia';
 import { destinoLugar, TarjetaLugar } from './TarjetaLugar';
-import { ConsejosCarga } from './ConsejosCarga';
+import { ConsejoCarga } from './ConsejoCarga';
 
 interface Props {
   lugares: Lugar[];
@@ -41,7 +41,7 @@ export function Lugares({ lugares, hoy }: Props) {
       <div id="mapa">
         {mapaAceptado && enMapa ? (
           <>
-            {mapaCargando && <ConsejosCarga titulo="Estamos preparando el mapa" />}
+            {mapaCargando && <ConsejoCarga />}
             <figure className={mapaCargando ? 'mapa mapa-oculto' : 'mapa'}>
               <iframe
                 key={enMapa.id}
