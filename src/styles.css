@@ -205,6 +205,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .chip { border: 0; background: none; padding: 8px 14px; min-height: 40px; border-radius: 4px; color: var(--tinta-2); font-weight: 700; transition: background-color 0.18s var(--suave), color 0.18s; }
 .chip:hover { color: var(--tinta); }
 .chip[aria-pressed='true'] { background: var(--fondo); color: var(--bosque); }
+/* Línea separadora entre opciones; desaparece junto a la opción elegida */
+.chip + .chip { position: relative; }
+.chip + .chip::before { content: ''; position: absolute; left: -2px; top: 10px; bottom: 10px; width: 1px; background: var(--arena); }
+.chip[aria-pressed='true']::before, .chip[aria-pressed='true'] + .chip::before { display: none; }
 .vacio { color: var(--tinta-2); padding: 16px 0; }
 .pendientes { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--arena); font-size: 0.95rem; color: var(--tinta-2); }
 .pendientes h3 { font-size: 1rem; color: var(--tinta); margin-bottom: 6px; }
@@ -345,6 +349,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .marco { padding: 0 20px; }
   .principal { padding-top: 28px; }
   .acciones .boton { flex: 1 1 100%; }
+  /* Filtros del directorio: cuadrícula 2×2 de celdas iguales, cada opción con su borde */
+  .filtros { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 6px; padding: 6px; }
+  .chip { border: 1px solid var(--arena); text-align: center; min-height: 44px; }
+  .chip[aria-pressed='true'] { border-color: var(--bosque); }
+  .chip + .chip::before { display: none; }
   .servicio.destacado { padding: 18px 16px; }
   .contexto { padding: 18px; }
 }
