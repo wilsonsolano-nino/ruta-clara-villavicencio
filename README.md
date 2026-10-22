@@ -71,7 +71,7 @@ Esto es un prototipo para una hackathon, probado solo con datos inventados. No e
 
 - **Emergencias: 123** (24/7, sin costo). Fuente: [Resolución CRC 5937 de 2020](https://cancilleria.gov.co/sites/default/files/Normograma/docs/resolucion_crc_5937_2020.htm).
 - **Línea 106**, línea nacional de salud mental (24/7, gratuita). Fuente: [MinSalud](https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx).
-- **Yo Te Escucho Villavicencio: 316 390 7010 o 01 8000 931 089** (llamada y WhatsApp, 24/7). Fuente: [Directorio Nacional de Líneas Territoriales de MinSalud, agosto 2025](https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf).
+- **Yo Te Escucho Villavicencio: 316 390 7010 o 01 8000 931 089** (llamada y WhatsApp 24/7). Fuente: [Directorio Nacional de Líneas Territoriales de MinSalud, agosto 2025](https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf).
 
 Datos consultados el 21 oct 2026.
 
