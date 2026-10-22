@@ -4,16 +4,18 @@ El kickoff pide cubrir: problema, usuario, solución, demo, evidencia, estado TR
 
 Esto es una base. Lo importante es que cada uno lo diga con sus palabras, no que lo recite.
 
-Hablamos los tres: **Wilson Solano, Alejandro Diaz y Carlos Arciniegas**. Antes de ensayar, anoten quién toma cada bloque.
+Hablamos los tres: **Wilson Solano, Alejandro Diaz y Carlos Arciniegas**. Cada uno toma dos bloques seguidos, así solo hay dos cambios de voz.
 
-| Tiempo | Bloque | Quién |
-|---|---|---|
-| 0:00–0:40 | Problema | |
-| 0:40–1:10 | Usuario | |
-| 1:10–1:50 | Solución | |
-| 1:50–3:20 | Demo en vivo | |
-| 3:20–4:10 | Evidencia y TRL 4 | |
-| 4:10–5:00 | Operación y próximos pasos | |
+Presentación (Canva): https://canva.link/j7q5iudvno2orfg
+
+| Tiempo | Bloque | Diapositiva | Quién |
+|---|---|---|---|
+| 0:00–0:40 | Problema | 1–2 | Wilson |
+| 0:40–1:10 | Usuario | 3 | Wilson |
+| 1:10–1:50 | Solución | 4 | Alejandro |
+| 1:50–3:20 | Demo en vivo | 5 + app publicada | Alejandro (maneja el computador) |
+| 3:20–4:10 | Evidencia y TRL 4 | 6 | Carlos |
+| 4:10–5:00 | Operación y próximos pasos | 7–8 | Carlos |
 
 ---
 
@@ -40,13 +42,13 @@ Hablamos los tres: **Wilson Solano, Alejandro Diaz y Carlos Arciniegas**. Antes 
 
 ### 3:20 · Evidencia y TRL 4 (50 s)
 
-> "Estamos en TRL 4: las dos funciones principales funcionan juntas y las probamos en un entorno controlado. Escribimos 24 casos de prueba con datos inventados y pasan los 24. Por ejemplo, un dato con 30 días se muestra y uno con 31 no. Si eliges emergencia, salen primero las líneas de emergencia. Y ninguna pregunta usa palabras como síntoma, riesgo o diagnóstico. También queremos ser claros con lo que falta: un punto del mapa no es exacto y la app lo dice, la Secretaría de Salud todavía no tiene fuente y por eso no aparece, y no probamos con personas reales porque el reto no lo permite."
+> "Estamos en TRL 4: las dos funciones principales funcionan juntas y las probamos en un entorno controlado. Escribimos 24 casos de prueba con datos inventados y pasan los 24. Por ejemplo, un dato con 30 días se muestra y uno con 31 no. Si eliges emergencia, salen primero las líneas de emergencia. Y ninguna pregunta usa palabras como síntoma, riesgo o diagnóstico. ¿Por qué es confiable? Porque cada teléfono tiene fuente oficial, fecha y responsable; cada lugar del mapa está habilitado en el REPS de MinSalud, y las guías citan fuentes oficiales sin lenguaje clínico. Todo eso también lo verifican las pruebas."
 
 Mostrar en pantalla: `docs/evidencia/resultados-pruebas.md`.
 
 ### 4:10 · Operación y próximos pasos (50 s)
 
-> "¿Quién mantiene esto? Proponemos un responsable en la Secretaría de Salud y un grupo de estudiantes que verifiquen. Cada lunes revisan las líneas y los lugares, unas dos horas a la semana. Publicarla no cuesta nada porque es una página estática. Lo que sigue: confirmar en persona los puntos del mapa, revisar el lenguaje con la Secretaría de Salud y llevar la idea a otros municipios del Meta. Gracias."
+> "¿Quién revisa que los teléfonos sigan funcionando? La app muestra 3 líneas de ayuda y 4 lugares de atención. Cada lunes, de 2 a 4 estudiantes llaman a cada uno y comparan el número con la página oficial: ¿es el mismo y contesta? La Secretaría de Salud aprueba, y la app muestra la nueva fecha de revisión. Son 5 minutos por contacto, unos 35 minutos a la semana. Y si un lunes nadie revisa, a los 31 días la app oculta ese contacto sola, para no mandar a nadie a un número que no contesta. Publicarla cuesta cero porque es una página estática. Hacia dónde vamos: operar el directorio junto a la Secretaría de Salud, que las líneas de emergencia carguen incluso sin internet, y llevar Ruta Clara a los 29 municipios del Meta cambiando solo los datos. Gracias."
 
 ---
 
@@ -57,3 +59,4 @@ Mostrar en pantalla: `docs/evidencia/resultados-pruebas.md`.
 - **¿Y si nadie verifica y la pantalla queda vacía?** Hoy no pasa: revisamos los datos el 21 de octubre y se muestran hasta el 20 de noviembre. Si vencen, la app no queda vacía: manda al directorio oficial de MinSalud y a urgencias. Para cuando esté en operación proponemos que el 123 y el 106, que casi nunca cambian, sigan visibles con la etiqueta "verificación vencida", sin presentarlos como vigentes.
 - **¿Cómo saben que no muestra datos viejos?** Lo prueban los casos CP-04 y CP-05: con 30 días el dato se ve y con 31 se oculta, sin que nadie haga nada.
 - **¿Guardan datos?** No. No hay registro, y las respuestas del orientador se borran al reiniciar.
+- **¿Qué les falta?** (No está en las diapositivas; respóndanlo solo si lo preguntan.) Un punto del mapa, Monte Sinaí sede principal, salió de un directorio público y la app avisa que es aproximado. La Secretaría Local de Salud no aparece porque todavía no tenemos fuente oficial de su contacto, y esa es la regla para todos. Tampoco probamos con personas reales, porque el reto no lo permite.
