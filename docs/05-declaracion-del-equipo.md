@@ -18,6 +18,8 @@ No hay trabajo previo. El proyecto se inició el 20 de octubre de 2026, después
 | Git | Control de versiones | GPL-2.0 |
 | Microsoft Edge (Chromium, modo sin ventana) | Capturas automatizadas de la interfaz | Licencia de Microsoft |
 
+Claude es el único asistente de IA que usamos; lo demás sale de lo que sabemos como equipo y de la mentoría con Duván Alberto Rozo Parra (ver `docs/03-registro-fuentes-y-cambios.md`). También usamos GitHub para compartir el repositorio.
+
 > La IA **no** forma parte del producto. La app no usa IA en tiempo de ejecución: el orientador es un árbol de reglas fijo.
 
 ## Componentes de terceros incluidos en el prototipo

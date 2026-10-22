@@ -4,20 +4,22 @@ El kickoff pide cubrir: problema, usuario, solución, demo, evidencia, estado TR
 
 Esto es una base. Lo importante es que cada uno lo diga con sus palabras, no que lo recite.
 
+Hablamos los tres: **Wilson Solano, Alejandro Diaz y Carlos Arciniegas**. Antes de ensayar, anoten quién toma cada bloque.
+
 | Tiempo | Bloque | Quién |
 |---|---|---|
-| 0:00–0:40 | Problema | Integrante 1 |
-| 0:40–1:10 | Usuario | Integrante 1 |
-| 1:10–1:50 | Solución | Integrante 2 |
-| 1:50–3:20 | Demo en vivo | Integrante 2 |
-| 3:20–4:10 | Evidencia y TRL 4 | Integrante 3 |
-| 4:10–5:00 | Operación y próximos pasos | Integrante 3 |
+| 0:00–0:40 | Problema | |
+| 0:40–1:10 | Usuario | |
+| 1:10–1:50 | Solución | |
+| 1:50–3:20 | Demo en vivo | |
+| 3:20–4:10 | Evidencia y TRL 4 | |
+| 4:10–5:00 | Operación y próximos pasos | |
 
 ---
 
 ### 0:00 · Problema (40 s)
 
-> "Hasta septiembre de 2025 se notificaron más de 28.000 intentos de suicidio en Colombia, y más de la mitad fueron de jóvenes entre 15 y 29 años. Aquí en Villavicencio, Yo Te Escucho orientó a 441 personas en cuatro meses. O sea, los servicios existen. El problema es llegar a ellos: los números están por todos lados, no sabes si todavía funcionan y no es claro cuál usar. Y si llamas en un mal momento y nadie contesta, es muy probable que no vuelvas a intentarlo."
+> "Hasta septiembre de 2025 se notificaron más de 28.000 intentos de suicidio en Colombia, y más de la mitad fueron de jóvenes entre 15 y 29 años. En el Meta la tasa casi se duplicó desde 2021 y ya está por encima del promedio del país. Aquí en Villavicencio, Yo Te Escucho orientó a 441 personas en cuatro meses. O sea, los servicios existen. El problema es llegar a ellos: los números están por todos lados, no sabes si todavía funcionan y no es claro cuál usar. Y si llamas en un mal momento y nadie contesta, es muy probable que no vuelvas a intentarlo."
 
 ### 0:40 · Usuario (30 s)
 

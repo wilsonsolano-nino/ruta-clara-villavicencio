@@ -8,13 +8,12 @@
 
 | Dato | Fuente |
 |---|---|
-| 28.290 intentos de suicidio notificados en Colombia hasta el 27 sep 2025 | Instituto Nacional de Salud (INS), citado en el kickoff |
-| El 56,6 % de esos casos corresponde a jóvenes de 15 a 29 años | INS, citado en el kickoff |
-| 441 personas orientadas por "Yo Te Escucho" entre marzo y junio de 2026 | Alcaldía de Villavicencio, citado en el kickoff |
+| 28.290 intentos de suicidio notificados en Colombia hasta el 27 sep 2025 | [INS, comunicado "Problemas familiares, el factor que más afecta la salud mental de los colombianos"](https://www.ins.gov.co/Noticias/Paginas/Problemas-familiares-el-factor-que-m%C3%A1s-afecta-la-salud-mental-de-los-colombianos.aspx); [INS, Boletín Epidemiológico Semanal, semana 39 de 2025](https://www.ins.gov.co/buscador-eventos/BoletinEpidemiologico/2025_Boletin_epidemiologico_semana_39.pdf) |
+| El 56,6 % de esos casos corresponde a jóvenes de 15 a 29 años | [INS, comunicado "Problemas familiares, el factor que más afecta la salud mental de los colombianos"](https://www.ins.gov.co/Noticias/Paginas/Problemas-familiares-el-factor-que-m%C3%A1s-afecta-la-salud-mental-de-los-colombianos.aspx) |
+| En el Meta, la tasa de intento de suicidio subió de 53,8 a 92,5 por cada 100.000 habitantes entre 2021 y 2025, por encima del promedio nacional | [INS, Informe de evento: intento de suicidio, 2025](https://www.ins.gov.co/buscador-eventos/Informesdeevento/INTENTO%20DE%20SUICIDIO%20INFORME%20DE%20EVENTO%202025.pdf) |
+| 441 personas orientadas por "Yo Te Escucho" entre marzo y junio de 2026 | Alcaldía de Villavicencio, citado en el kickoff (no encontramos la publicación original en línea) |
 
-Lo que nos dicen estos datos: los servicios existen y la gente los usa. Lo que falla es el camino entre el joven y el canal que le sirve.
-
-Pendiente: agregar la URL y la fecha de consulta del boletín del INS y de la publicación de la Alcaldía en [03-registro-fuentes-y-cambios.md](03-registro-fuentes-y-cambios.md).
+Lo que nos dicen estos datos: el problema crece en el Meta, los servicios existen y la gente los usa. Lo que falla es el camino entre el joven y el canal que le sirve.
 
 ## Qué se le atraviesa a un joven que busca ayuda
 
@@ -38,7 +37,7 @@ También pensamos en:
 
 ## Cómo validarlo sin preguntar por la salud de nadie
 
-El kickoff pide validar preguntando cómo se busca información, nunca por experiencias personales. Estas son las preguntas que usaríamos:
+El kickoff sugiere validar preguntando cómo se busca información, nunca por experiencias personales. En la hackathon nos apoyamos en fuentes públicas; estas son las preguntas que haríamos en una siguiente etapa:
 
 - ¿Dónde buscarías un número de apoyo emocional si un amigo lo necesitara?
 - ¿Prefieres llamar o escribir?

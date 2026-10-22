@@ -94,9 +94,7 @@ Cada vista tiene su propia dirección, así que el botón "atrás" del celular f
 
 En orden de prioridad. Si tomas uno, escribe tu nombre al lado.
 
-- [ ] **Agregar el rol de cada integrante** en `docs/05-declaracion-del-equipo.md`. Es un entregable obligatorio.
 - [ ] **Cambiar `verificadoPor`** en `servicios.json` por el nombre de quien verificó cada dato.
-- [ ] **Anotar la retroalimentación de mentorías** en la tabla de `docs/03-registro-fuentes-y-cambios.md`. El jurado lo pide explícitamente.
 - [ ] **Ensayar la muestra en vivo del pitch** (el bloque "Demo en vivo" de `docs/06-guion-pitch.md`): recorrer la app publicada frente al jurado (orientador, mapa, recursos y política de datos). El mapa necesita internet.
 - [ ] **Confirmar en sitio el punto de Monte Sinaí sede principal** en el mapa: se tomó de un directorio público. Si alguien lo ubica, se corrige en `src/data/lugares.json`.
 

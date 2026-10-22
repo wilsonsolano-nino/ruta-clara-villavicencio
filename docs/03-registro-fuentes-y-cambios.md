@@ -46,9 +46,10 @@ Todas las sedes salen del **Registro Especial de Prestadores y Sedes (REPS)** de
 
 | Dato | Fuente | Fecha de consulta |
 |---|---|---|
-| 28.290 intentos de suicidio notificados (hasta el 27 sep 2025) | INS, citado en el kickoff | 19 oct 2026 (kickoff) |
-| 56,6 % en jóvenes de 15 a 29 años | INS, citado en el kickoff | 19 oct 2026 (kickoff) |
-| 441 personas orientadas por Yo Te Escucho (mar-jun 2026) | Alcaldía de Villavicencio, citado en el kickoff | 19 oct 2026 (kickoff) |
+| 28.290 intentos de suicidio notificados (hasta el 27 sep 2025) | [INS, comunicado "Problemas familiares, el factor que más afecta la salud mental de los colombianos"](https://www.ins.gov.co/Noticias/Paginas/Problemas-familiares-el-factor-que-m%C3%A1s-afecta-la-salud-mental-de-los-colombianos.aspx); [INS, Boletín Epidemiológico Semanal, semana 39 de 2025](https://www.ins.gov.co/buscador-eventos/BoletinEpidemiologico/2025_Boletin_epidemiologico_semana_39.pdf) | 21 oct 2026 |
+| 56,6 % en jóvenes de 15 a 29 años | [INS, comunicado "Problemas familiares, el factor que más afecta la salud mental de los colombianos"](https://www.ins.gov.co/Noticias/Paginas/Problemas-familiares-el-factor-que-m%C3%A1s-afecta-la-salud-mental-de-los-colombianos.aspx) | 21 oct 2026 |
+| Meta: tasa de intento de suicidio de 53,8 (2021) a 92,5 (2025) por 100.000 habitantes | [INS, Informe de evento: intento de suicidio, 2025](https://www.ins.gov.co/buscador-eventos/Informesdeevento/INTENTO%20DE%20SUICIDIO%20INFORME%20DE%20EVENTO%202025.pdf) | 21 oct 2026 |
+| 441 personas orientadas por Yo Te Escucho (mar-jun 2026) | Alcaldía de Villavicencio, citado en el kickoff. No encontramos la publicación original en línea | 19 oct 2026 (kickoff) |
 
 ## Registro de retroalimentación y cambios
 
@@ -66,7 +67,7 @@ Todas las sedes salen del **Registro Especial de Prestadores y Sedes (REPS)** de
 | 21 oct 2026 | Revisión de privacidad | Los reportes de novedades obligaban a guardar lo que escribía la persona. Además, un reporte no podía ocultar una línea, así que tampoco protegía a nadie. | Se quitan los reportes y el estado "en revisión". La salvaguarda queda en la regla de 30 días y en la verificación semanal del equipo (`docs/04-plan-de-operacion.md`). |
 | 21 oct 2026 | Revisión de fuentes | El 106 y Yo Te Escucho citaban el directorio de MinSalud sin enlace; el 123 no tenía fuente, así que la opción de emergencia no mostraba el número de emergencias; el 01 8000 931 089 no tenía titular. | Se registran las fuentes con enlace: página oficial de la Línea 106, directorio nacional de MinSalud (agosto 2025) y Resolución CRC 5937 de 2020 para el 123. El 01 8000 931 089 es la línea gratuita de Yo Te Escucho y se une a esa entrada. El panel de emergencia muestra primero el 123. CP-19 exige un enlace oficial `.gov.co` en todo dato que se muestre. |
 | 21 oct 2026 | Revisión de un compañero | Los consejos que rotaban mientras carga el mapa no tenían fuente; al cambiar cada 5 segundos, el lector de pantalla los repetía; uno hablaba de "persona adulta" para un público de 18 a 28 años. Si todas las líneas vencían, el orientador no mencionaba urgencias. | Se muestra un solo consejo fijo, con su fuente (OMS, la misma de Recursos) y fecha de consulta, sin rotación ni anuncios repetidos al lector de pantalla (CP-22 y CP-23). El mensaje sin líneas vigentes agrega "si es una emergencia, acude a urgencias" (CP-15). |
-| _completar_ | Mentoría | | |
-| _completar_ | Mentoría | | |
+| 19–21 oct 2026 | Mentoría con Duván Alberto Rozo Parra | Aplicar el tratamiento de datos con base en los artículos de la ley, con términos y condiciones claros. | Política de tratamiento de datos (`#privacidad`) con el marco legal artículo por artículo (Ley 1581 de 2012, Decreto 1377 de 2013, Ley 1616 de 2013) y resumen en el pie de página. |
+| 19–21 oct 2026 | Mentoría con Duván Alberto Rozo Parra | Usar un mapa dinámico que muestre las ubicaciones cercanas de los centros de atención según el servicio que se necesite. | Mapa de lugares de atención en salud mental del REPS, con "Ver en el mapa" y "Cómo llegar", y la opción "Prefiero ir a un lugar en persona" en el orientador. No pedimos la ubicación de la persona por privacidad: "Cómo llegar" calcula la ruta desde donde esté sin que Ruta Clara la conozca. Hoy los cuatro lugares atienden salud mental, así que no hay filtro por tipo de servicio; se agregará si se suman sedes con servicios distintos. |
 
 > Agreguen aquí cada comentario de mentores o compañeros y qué cambiaron. El jurado lo pide explícitamente.
