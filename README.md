@@ -4,14 +4,14 @@
 
 > ¿Cómo podemos ayudar a jóvenes de Villavicencio a encontrar información confiable, entender las rutas de apoyo disponibles y llegar a ellas a tiempo?
 
-Ruta Clara Villavicencio es una web app, que también se puede agregar a la pantalla de inicio del celular, que acorta la distancia entre un joven y el canal oficial de apoyo adecuado. **No diagnostica, no evalúa riesgo y no es un servicio de salud.** Solo orienta hacia servicios humanos oficiales, y cada dato lleva su fuente y fecha de verificación.
+Ruta Clara Villavicencio es una página web (que también se puede agregar a la pantalla de inicio del celular) para que un joven encuentre rápido el canal oficial de apoyo que le sirve. **No diagnostica, no evalúa riesgo y no es un servicio de salud.** Solo lleva a servicios oficiales atendidos por personas, y cada dato dice de dónde salió y cuándo se revisó.
 
-## Funciones críticas (las que demuestran TRL 4)
+## Qué hace
 
-| # | Función | Qué la hace distinta |
+| # | Función | Cómo funciona |
 |---|---|---|
-| 1 | **Directorio verificado con vigencia** | Cada teléfono o ruta guarda fuente oficial, fecha y responsable de verificación. A los 24 días se marca "por renovar". A los 31 días **se oculta el contacto** de forma automática. Los datos sin fuente nunca se muestran. |
-| 2 | **Orientador por tipo de consulta** | Hace 2 preguntas: qué buscas y cómo prefieres comunicarte. No pregunta síntomas. Es un árbol de reglas transparente que explica "por qué te mostramos esto". |
+| 1 | **Directorio verificado con vigencia** | Cada teléfono guarda su fuente oficial, la fecha en que se revisó y quién lo revisó. A los 24 días aparece "por renovar" y a los 31 **el contacto se oculta solo**. Lo que no tiene fuente nunca se muestra. |
+| 2 | **Orientador por tipo de consulta** | Dos preguntas: qué buscas y cómo prefieres comunicarte. No pregunta síntomas. Son reglas fijas, y la app explica "por qué te mostramos esto". |
 | + | **Mapa de lugares de atención** | Instituciones de salud mental de Villavicencio habilitadas en el REPS de MinSalud, con la misma regla de fuente y fecha. También aparecen en el filtro "Presencial" del Directorio. Google Maps solo se carga cuando la persona lo pide; la app no usa su ubicación. |
 
 ## Cómo ejecutarlo
@@ -26,7 +26,7 @@ npm run evidencia  # corre las pruebas y regenera docs/evidencia/resultados-prue
 npm run build      # genera /dist para publicar (Vercel, Netlify, GitHub Pages)
 ```
 
-Además del orientador y el directorio, la app incluye **Recursos** (guías de autocuidado y de cómo acompañar a otra persona, cada una con fuente oficial y fecha de consulta), **preguntas frecuentes** en "Cómo funciona" y la **política de tratamiento de datos** basada en la Ley 1581 de 2012 y el Decreto 1377 de 2013, enlazada en el pie de página.
+También tiene **Recursos** (guías cortas de autocuidado y de cómo acompañar a otra persona, con fuente y fecha), **preguntas frecuentes** en "Cómo funciona" y la **política de tratamiento de datos**, basada en la Ley 1581 de 2012 y el Decreto 1377 de 2013, en el pie de página.
 
 La app no guarda nada de lo que hace la persona: no hay registro, formularios ni reportes; solo el navegador recuerda el modo oscuro si se activa. Necesita internet: no funciona sin conexión.
 
@@ -67,7 +67,7 @@ Solo `index.html`, `src/` y `public/` forman la web publicada (`npm run build` g
 
 ## Aviso
 
-Este es un prototipo académico, probado solo con datos sintéticos y escenarios ficticios. No es un servicio de salud. Si tú o alguien necesita apoyo:
+Esto es un prototipo para una hackathon, probado solo con datos inventados. No es un servicio de salud. Si tú o alguien necesita apoyo:
 
 - **Emergencias: 123** (24/7, sin costo). Fuente: [Resolución CRC 5937 de 2020](https://cancilleria.gov.co/sites/default/files/Normograma/docs/resolucion_crc_5937_2020.htm).
 - **Línea 106**, línea nacional de salud mental (24/7, gratuita). Fuente: [MinSalud](https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx).

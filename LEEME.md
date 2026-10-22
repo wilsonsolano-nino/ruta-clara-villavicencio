@@ -2,18 +2,18 @@
 
 Estado del proyecto al **21 oct 2026**. Los entregables y el pitch son el **22 oct en la tarde** en UNIMETA TECH.
 
-Este archivo resume qué llevamos, cómo correrlo y qué falta. El `README.md` es la ficha técnica del proyecto; esta guía es para coordinarnos.
+Aquí está lo que llevamos, cómo correrlo y lo que falta. El `README.md` es lo que ve cualquiera en GitHub; esto es para nosotros.
 
 ---
 
 ## 1. Qué es
 
-Ruta Clara Villavicencio es nuestra solución al reto **Mente Sana Joven** (Categoría 2, Joven) de la Hackathon Villavicencio 2026. Es una web app que ayuda a una persona joven a encontrar **el canal oficial de apoyo emocional adecuado** en Villavicencio.
+Es nuestra propuesta para el reto **Mente Sana Joven** (Categoría 2, Joven) de la Hackathon Villavicencio 2026: una página web que le ayuda a un joven a encontrar el canal oficial de apoyo emocional que le sirve en Villavicencio.
 
 - **No diagnostica, no evalúa riesgo y no es un servicio de salud.** Solo orienta hacia servicios humanos oficiales.
 - **Cada teléfono y cada lugar muestran su fuente oficial y la fecha de verificación.** Si un dato pasa más de 30 días sin verificarse, la app oculta el contacto sola.
 - **No guarda nada de lo que hace la persona:** no hay registro, formularios ni reportes, y no usa su ubicación.
-- **Meta de madurez:** TRL 4, que es a la vez el mínimo para el premio y el máximo permitido. Las funciones críticas están probadas con datos sintéticos y escenarios ficticios.
+- **Meta:** TRL 4, que es el mínimo para el premio y también el máximo permitido. Las funciones principales están probadas con datos inventados.
 
 ## 2. Cómo correrlo
 
@@ -24,14 +24,15 @@ npm install
 npm run dev        # abre http://localhost:5173
 npm test           # corre los 24 casos de prueba (todos pasan)
 npm run evidencia  # corre las pruebas y regenera docs/evidencia/resultados-pruebas.md
-npm run build      # genera /dist para publicar
+npm run build      # revisa el código y arma la versión final en /dist, la que se publica
+npm run preview    # muestra esa versión final en http://localhost:4173
 ```
 
 Para probarlo en el celular: `npm run dev -- --host` y abre en el teléfono la dirección "Network" que aparece en la terminal (computador y celular en la misma red wifi).
 
 ## 3. Qué llevamos
 
-### Funciones (las que demuestran TRL 4)
+### Funciones
 
 | Función | Qué hace | Dónde está |
 |---|---|---|
@@ -96,9 +97,8 @@ En orden de prioridad. Si tomas uno, escribe tu nombre al lado.
 - [ ] **Agregar el rol de cada integrante** en `docs/05-declaracion-del-equipo.md`. Es un entregable obligatorio.
 - [ ] **Cambiar `verificadoPor`** en `servicios.json` por el nombre de quien verificó cada dato.
 - [ ] **Anotar la retroalimentación de mentorías** en la tabla de `docs/03-registro-fuentes-y-cambios.md`. El jurado lo pide explícitamente.
-- [ ] **Ensayar la demo completa** en el computador del pitch siguiendo `docs/06-guion-pitch.md` (orientador, mapa, recursos y política de datos). El mapa necesita internet.
+- [ ] **Ensayar la muestra en vivo del pitch** (el bloque "Demo en vivo" de `docs/06-guion-pitch.md`): recorrer la app publicada frente al jurado (orientador, mapa, recursos y política de datos). El mapa necesita internet.
 - [ ] **Confirmar en sitio el punto de Monte Sinaí sede principal** en el mapa: se tomó de un directorio público. Si alguien lo ubica, se corrige en `src/data/lugares.json`.
-- [ ] **Publicar una versión en línea** (Vercel, Netlify o GitHub Pages con `npm run build`) para tener un enlace de respaldo si falla el computador.
 
 ### Datos que siguen "por verificar"
 
@@ -156,7 +156,7 @@ docs/evidencia/         ← resultados de las pruebas y 11 capturas de la app (e
 
 ## 7. SEO: qué es y qué falta
 
-**SEO** (optimización para buscadores) es preparar la página para que Google la entienda y la muestre bien cuando alguien busque, por ejemplo, "apoyo emocional Villavicencio", y para que al compartir el enlace por WhatsApp salga una vista previa con título y descripción. No cambia nada de lo que ve la persona en la app.
+**SEO** es preparar la página para que Google la muestre bien cuando alguien busque, por ejemplo, "apoyo emocional Villavicencio", y para que al mandar el enlace por WhatsApp salga una vista previa con título y descripción. No cambia nada de lo que se ve en la app.
 
 **Ya está hecho** (en `index.html` y `public/robots.txt`):
 
@@ -174,8 +174,10 @@ docs/evidencia/         ← resultados de las pruebas y 11 capturas de la app (e
 
 ## 8. Herramientas usadas
 
-El código, las pruebas y los documentos se hicieron con apoyo de Claude (Anthropic), un asistente de IA, y el equipo revisó todo. Eso ya está declarado en `docs/05-declaracion-del-equipo.md`, como pide el reto. La app no usa IA mientras funciona.
+Usamos Claude (Anthropic), un asistente de IA, como apoyo para el código, las pruebas y los documentos, y revisamos todo. Está declarado en `docs/05-declaracion-del-equipo.md`, como pide el reto. La app no usa IA.
+
+Antes del pitch, cada uno debería poder explicar sin leer: la regla de 30 días (`src/logic/vigencia.ts`), cómo decide el orientador (`src/logic/orientador.ts`), por qué quitamos los reportes y qué hace cada carpeta.
 
 ---
 
-¿Dudas? Hablemos en el canal del equipo antes de cambiar la estructura o la lógica.
+Si van a cambiar la estructura o la lógica, avisen primero en el grupo.
