@@ -7,8 +7,8 @@ import { evaluarVigencia } from './vigencia';
  * solo decide qué canal oficial verificado puede orientar la consulta.
  */
 
-export type Proposito = 'hablar_ahora' | 'por_otra_persona' | 'conocer_servicios' | 'emergencia';
-export type PreferenciaCanal = 'llamada' | 'whatsapp' | 'cualquiera';
+export type Proposito = 'hablar_ahora' | 'por_otra_persona' | 'en_persona' | 'emergencia';
+export type PreferenciaCanal = 'llamada' | 'whatsapp';
 
 export interface Respuestas {
   proposito: Proposito;
@@ -26,8 +26,8 @@ export const PREGUNTA_PROPOSITO = {
   texto: '¿Qué estás buscando en este momento?',
   opciones: [
     { valor: 'hablar_ahora', texto: 'Quiero hablar con alguien', ayuda: 'Personas de líneas oficiales te escuchan y orientan.' },
-    { valor: 'por_otra_persona', texto: 'Me preocupa alguien y quiero saber cómo ayudar', ayuda: 'También puedes llamar tú para pedir orientación.' },
-    { valor: 'conocer_servicios', texto: 'Solo quiero conocer qué servicios existen', ayuda: 'Te mostramos el directorio verificado.' },
+    { valor: 'por_otra_persona', texto: 'Me preocupa alguien y quiero saber cómo ayudar', ayuda: 'Consejos para acompañar y las líneas que también te orientan a ti.' },
+    { valor: 'en_persona', texto: 'Prefiero ir a un lugar en persona', ayuda: 'Te mostramos en un mapa las instituciones de salud mental de Villavicencio.' },
     { valor: 'emergencia', texto: 'Es una emergencia ahora mismo', ayuda: 'Te mostramos de inmediato las líneas para actuar ya.' },
   ] as Opcion<Proposito>[],
 };
@@ -36,15 +36,14 @@ export const PREGUNTA_CANAL = {
   id: 'canal',
   texto: '¿Cómo prefieres comunicarte?',
   opciones: [
-    { valor: 'llamada', texto: 'Llamada' },
-    { valor: 'whatsapp', texto: 'WhatsApp (escribir)' },
-    { valor: 'cualquiera', texto: 'Me da igual' },
+    { valor: 'llamada', texto: 'Llamar', ayuda: 'Hablas con una persona por teléfono.' },
+    { valor: 'whatsapp', texto: 'Escribir por WhatsApp', ayuda: 'Conversas por chat, a tu ritmo.' },
   ] as Opcion<PreferenciaCanal>[],
 };
 
-/** Indica si con las respuestas actuales hay que hacer la pregunta de canal. */
+/** Solo "hablar con alguien" pregunta el canal: en los demás propósitos la respuesta no cambiaría el resultado. */
 export function necesitaCanal(r: Partial<Respuestas>): boolean {
-  return r.proposito === 'hablar_ahora' || r.proposito === 'por_otra_persona';
+  return r.proposito === 'hablar_ahora';
 }
 
 export interface Recomendacion {
@@ -60,13 +59,16 @@ export interface ResultadoOrientador {
   /** Explicación transparente de la regla aplicada (se muestra al usuario). */
   porQue: string;
   irADirectorio: boolean;
+  /** Lleva al mapa de lugares de atención presencial. */
+  irALugares: boolean;
+  /** Guía de Recursos que acompaña el resultado (id de recursos.json), si aplica. */
+  guia: string | null;
   sinDatosVigentes: boolean;
 }
 
 const PRIORIDAD_ESTADO: Record<ResultadoVigencia['estado'], number> = {
   vigente: 0,
   por_vencer: 1,
-  en_revision: 2,
   vencido: 9,
   sin_verificar: 9,
 };
@@ -85,20 +87,14 @@ function canalesDe(s: Servicio, tipos: TipoCanal[]): TipoCanal[] {
   return s.canales.map((c) => c.tipo).filter((t) => tipos.includes(t));
 }
 
-export function orientar(
-  respuestas: Respuestas,
-  servicios: Servicio[],
-  hoy: string,
-  reportesAbiertos: Record<string, number> = {},
-): ResultadoOrientador {
-  const evaluados = servicios.map((servicio) => ({
-    servicio,
-    vigencia: evaluarVigencia(servicio, hoy, reportesAbiertos[servicio.id] ?? 0),
-  }));
+export function orientar(respuestas: Respuestas, servicios: Servicio[], hoy: string): ResultadoOrientador {
+  const evaluados = servicios.map((servicio) => ({ servicio, vigencia: evaluarVigencia(servicio, hoy) }));
   const mostrables = evaluados.filter((e) => e.vigencia.mostrable);
   const remotos: TipoCanal[] = ['llamada', 'whatsapp'];
+  const base = { irADirectorio: false, irALugares: false, guia: null, sinDatosVigentes: false };
 
   const sinDatos = (): ResultadoOrientador => ({
+    ...base,
     titulo: 'No tenemos datos verificados vigentes',
     mensaje:
       'Ninguna línea tiene hoy una verificación vigente en esta herramienta. Consulta directamente el directorio oficial de MinSalud o la página de la Alcaldía de Villavicencio.',
@@ -108,16 +104,14 @@ export function orientar(
     sinDatosVigentes: true,
   });
 
-  if (respuestas.proposito === 'conocer_servicios') {
+  if (respuestas.proposito === 'en_persona') {
     return {
-      titulo: 'Directorio de servicios verificados',
-      mensaje: 'Estos son los canales oficiales con fuente y fecha de verificación. Puedes revisar cada uno con calma.',
-      recomendaciones: mostrables
-        .map((e) => ({ ...e, canalesSugeridos: e.servicio.canales.map((c) => c.tipo) }))
-        .sort(ordenar),
-      porQue: 'Elegiste conocer los servicios: mostramos todos los que tienen verificación vigente.',
-      irADirectorio: true,
-      sinDatosVigentes: mostrables.length === 0,
+      ...base,
+      titulo: 'Lugares de atención en salud mental',
+      mensaje: 'Te mostramos en un mapa las instituciones habilitadas en Villavicencio. Llama antes de ir para confirmar horario y si atienden tu caso.',
+      recomendaciones: [],
+      porQue: 'Elegiste ir en persona: mostramos sedes habilitadas en el registro oficial de prestadores (REPS) de MinSalud.',
+      irALugares: true,
     };
   }
 
@@ -129,52 +123,57 @@ export function orientar(
       .sort((a, b) => Number(!!b.servicio.emergencia) - Number(!!a.servicio.emergencia) || ordenar(a, b));
     if (recs.length === 0) return sinDatos();
     return {
+      ...base,
       titulo: 'Busca ayuda inmediata',
       mensaje:
         'Si la vida de alguien está en peligro ahora, acude al servicio de urgencias más cercano o llama a una de estas líneas. No esperes a terminar de leer esta página.',
       recomendaciones: recs,
       porQue:
         'Elegiste "emergencia": mostramos primero líneas de emergencia verificadas y luego líneas 24 horas. Esta herramienta no evalúa la situación; eso lo hacen las personas de esas líneas.',
-      irADirectorio: false,
-      sinDatosVigentes: false,
     };
   }
 
-  // hablar_ahora | por_otra_persona
-  const pref = respuestas.canal ?? 'cualquiera';
-  const tiposPedidos: TipoCanal[] = pref === 'cualquiera' ? remotos : [pref];
   const candidatos = mostrables.filter((e) => !e.servicio.emergencia);
-
-  let recs: Recomendacion[] = candidatos
-    .map((e) => ({ ...e, canalesSugeridos: canalesDe(e.servicio, tiposPedidos) }))
-    .filter((r) => r.canalesSugeridos.length > 0)
-    .sort(ordenar);
-
-  let porQue =
-    pref === 'cualquiera'
-      ? 'Mostramos canales verificados por llamada o WhatsApp, primero los de Villavicencio.'
-      : `Mostramos canales verificados que atienden por ${pref === 'llamada' ? 'llamada' : 'WhatsApp'}, primero los de Villavicencio.`;
-
-  if (recs.length === 0) {
-    // Respaldo: ningún servicio vigente atiende por el canal pedido.
-    recs = candidatos
-      .map((e) => ({ ...e, canalesSugeridos: canalesDe(e.servicio, remotos) }))
+  const conCanales = (tipos: TipoCanal[]) =>
+    candidatos
+      .map((e) => ({ ...e, canalesSugeridos: canalesDe(e.servicio, tipos) }))
       .filter((r) => r.canalesSugeridos.length > 0)
       .sort(ordenar);
+
+  if (respuestas.proposito === 'por_otra_persona') {
+    const recs = conCanales(remotos);
+    if (recs.length === 0) return sinDatos();
+    return {
+      ...base,
+      titulo: 'Puedes acompañar sin hacerlo solo',
+      mensaje:
+        'Estas ideas te ayudan a estar presente. Y si necesitas orientación para ayudar, las líneas de apoyo también te atienden a ti: puedes contar la situación sin dar nombres.',
+      recomendaciones: recs,
+      porQue: 'Elegiste ayudar a otra persona: mostramos consejos para acompañar y las líneas verificadas por llamada o WhatsApp, primero las de Villavicencio.',
+      guia: 'acompanar',
+    };
+  }
+
+  // hablar_ahora
+  const pref = respuestas.canal;
+  let recs = conCanales(pref ? [pref] : remotos);
+  let porQue = pref
+    ? `Mostramos canales verificados que atienden por ${pref === 'llamada' ? 'llamada' : 'WhatsApp'}, primero los de Villavicencio.`
+    : 'Mostramos canales verificados por llamada o WhatsApp, primero los de Villavicencio.';
+
+  if (recs.length === 0 && pref) {
+    // Respaldo: ningún servicio vigente atiende por el canal pedido.
+    recs = conCanales(remotos);
     porQue = `Ningún servicio verificado atiende hoy por ${pref === 'whatsapp' ? 'WhatsApp' : 'llamada'}; te mostramos las otras opciones disponibles.`;
   }
 
   if (recs.length === 0) return sinDatos();
 
-  const otraPersona = respuestas.proposito === 'por_otra_persona';
   return {
-    titulo: otraPersona ? 'Puedes pedir orientación para acompañar' : 'Hay personas listas para escucharte',
-    mensaje: otraPersona
-      ? 'Las líneas de apoyo también orientan a quien quiere ayudar a otra persona. Puedes contar la situación sin dar nombres.'
-      : 'Escoge el canal con el que te sientas más cómodo. La conversación es con personas de servicios oficiales.',
+    ...base,
+    titulo: 'Hay personas listas para escucharte',
+    mensaje: 'Escoge el canal con el que te sientas más cómodo. La conversación es con personas de servicios oficiales.',
     recomendaciones: recs,
     porQue,
-    irADirectorio: false,
-    sinDatosVigentes: false,
   };
 }

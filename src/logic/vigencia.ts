@@ -22,14 +22,12 @@ export function hoyISO(ahora: Date = new Date()): string {
 }
 
 /**
- * Regla central de salvaguarda: un teléfono o ruta solo se muestra como vigente
- * si tiene fuente oficial y una fecha de verificación de hace 30 días o menos,
- * y no tiene reportes abiertos de falla.
+ * Regla central de salvaguarda: un teléfono, ruta o lugar solo se muestra como vigente
+ * si tiene fuente oficial y una fecha de verificación de hace 30 días o menos.
  */
 export function evaluarVigencia(
-  servicio: Servicio,
+  servicio: Pick<Servicio, 'fuente' | 'fechaVerificacion'>,
   hoy: string,
-  reportesAbiertos = 0,
   ventanaDias = VENTANA_VIGENCIA_DIAS,
   avisoDias = AVISO_POR_VENCER_DIAS,
 ): ResultadoVigencia {
@@ -51,27 +49,8 @@ export function evaluarVigencia(
   if (dias > ventanaDias) {
     return { estado: 'vencido', mostrable: false, diasDesdeVerificacion: dias, motivo: `Verificado hace ${dias} días (máximo ${ventanaDias}).` };
   }
-  if (reportesAbiertos > 0) {
-    // Un reporte no oculta el servicio (evita que un reporte erróneo o malicioso
-    // deje sin contacto a quien lo necesita), pero lo marca con advertencia
-    // y lo baja de prioridad en el orientador hasta que alguien lo revise.
-    return {
-      estado: 'en_revision',
-      mostrable: true,
-      diasDesdeVerificacion: dias,
-      motivo: `${reportesAbiertos} reporte(s) de falla pendiente(s) de revisión.`,
-    };
-  }
   if (dias > ventanaDias - avisoDias) {
     return { estado: 'por_vencer', mostrable: true, diasDesdeVerificacion: dias, motivo: `Verificado hace ${dias} días; requiere nueva verificación pronto.` };
   }
   return { estado: 'vigente', mostrable: true, diasDesdeVerificacion: dias, motivo: `Verificado hace ${dias} día(s).` };
 }
-
-export const ETIQUETA_ESTADO: Record<ResultadoVigencia['estado'], string> = {
-  vigente: 'Verificado',
-  por_vencer: 'Verificado, por renovar',
-  en_revision: 'En revisión',
-  vencido: 'Verificación vencida',
-  sin_verificar: 'Por verificar',
-};

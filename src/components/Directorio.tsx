@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
-import type { Servicio, TipoCanal } from '../logic/tipos';
+import type { Lugar, Servicio, TipoCanal } from '../logic/tipos';
 import { evaluarVigencia } from '../logic/vigencia';
 import { TarjetaServicio } from './TarjetaServicio';
+import { TarjetaLugar } from './TarjetaLugar';
 
 interface Props {
   servicios: Servicio[];
+  /** Sedes del REPS: son la atención presencial del directorio. */
+  lugares: Lugar[];
   hoy: string;
-  reportesAbiertos: Record<string, number>;
-  onReportar: (id: string) => void;
 }
 
 type Filtro = 'todos' | TipoCanal;
@@ -19,12 +20,12 @@ const FILTROS: { id: Filtro; texto: string }[] = [
   { id: 'presencial', texto: 'Presencial' },
 ];
 
-export function Directorio({ servicios, hoy, reportesAbiertos, onReportar }: Props) {
+export function Directorio({ servicios, lugares, hoy }: Props) {
   const [filtro, setFiltro] = useState<Filtro>('todos');
 
   const evaluados = useMemo(
-    () => servicios.map((s) => ({ servicio: s, vigencia: evaluarVigencia(s, hoy, reportesAbiertos[s.id] ?? 0) })),
-    [servicios, hoy, reportesAbiertos],
+    () => servicios.map((s) => ({ servicio: s, vigencia: evaluarVigencia(s, hoy) })),
+    [servicios, hoy],
   );
   const filtrados = evaluados.filter((e) => filtro === 'todos' || e.servicio.canales.some((c) => c.tipo === filtro));
   const verificados = filtrados.filter((e) => e.vigencia.mostrable);
@@ -32,6 +33,8 @@ export function Directorio({ servicios, hoy, reportesAbiertos, onReportar }: Pro
   const ahora = verificados.filter((e) => e.servicio.horario.includes('24'));
   const otras = verificados.filter((e) => !e.servicio.horario.includes('24'));
   const pendientes = filtrados.filter((e) => !e.vigencia.mostrable);
+  const lugaresVigentes = lugares.filter((l) => evaluarVigencia(l, hoy).mostrable);
+  const presencial = filtro === 'presencial';
 
   return (
     <>
@@ -50,14 +53,27 @@ export function Directorio({ servicios, hoy, reportesAbiertos, onReportar }: Pro
           ))}
         </div>
 
-        {verificados.length === 0 && <p className="vacio">No hay canales verificados vigentes para este filtro.</p>}
+        {verificados.length === 0 && !presencial && <p className="vacio">No hay canales verificados vigentes para este filtro.</p>}
+
+        {presencial && (
+          <>
+            <h3 className="subtitulo">Lugares de atención en salud mental</h3>
+            <p className="nota">
+              Instituciones habilitadas en el REPS de MinSalud. Llama antes de ir. <a href="#lugares">Verlas en el mapa</a>
+            </p>
+            {lugaresVigentes.length === 0 && <p className="vacio">No hay lugares con verificación vigente.</p>}
+            <div className="lista-tarjetas">
+              {lugaresVigentes.map((l) => <TarjetaLugar key={l.id} lugar={l} />)}
+            </div>
+          </>
+        )}
 
         {ahora.length > 0 && (
           <>
             <h3 className="subtitulo">Para hablar ahora</h3>
             <p className="nota">Atienden las 24 horas, todos los días.</p>
             <div className="lista-tarjetas">
-              {ahora.map((e) => <TarjetaServicio key={e.servicio.id} rec={e} onReportar={onReportar} />)}
+              {ahora.map((e) => <TarjetaServicio key={e.servicio.id} rec={e} />)}
             </div>
           </>
         )}
@@ -66,7 +82,18 @@ export function Directorio({ servicios, hoy, reportesAbiertos, onReportar }: Pro
           <>
             <h3 className="subtitulo">Otras rutas</h3>
             <div className="lista-tarjetas">
-              {otras.map((e) => <TarjetaServicio key={e.servicio.id} rec={e} onReportar={onReportar} />)}
+              {otras.map((e) => <TarjetaServicio key={e.servicio.id} rec={e} />)}
+            </div>
+          </>
+        )}
+
+        {filtro === 'todos' && lugaresVigentes.length > 0 && (
+          <>
+            <h3 className="subtitulo">Atención presencial</h3>
+            <p className="nota">{lugaresVigentes.length} lugares de atención en salud mental en Villavicencio, habilitados por MinSalud.</p>
+            <div className="acciones-final">
+              <button type="button" className="boton boton-secundario" onClick={() => setFiltro('presencial')}>Ver lugares</button>
+              <a href="#lugares">Verlos en el mapa</a>
             </div>
           </>
         )}
@@ -88,7 +115,7 @@ export function Directorio({ servicios, hoy, reportesAbiertos, onReportar }: Pro
         <h3 id="leer-titulo">Cómo leer este directorio</h3>
         <ul>
           <li><strong>Verificado</strong> significa que alguien comprobó el dato en una fuente oficial en los últimos 30 días.</li>
-          <li><strong>¿Un dato no funciona?</strong> Usa "Reportar dato incorrecto". No escribas datos personales.</li>
+          <li><strong>¿Prefieres ir en persona?</strong> Usa el filtro "Presencial" o <a href="#lugares">mira los lugares en el mapa</a>.</li>
           <li><strong>Si es una emergencia,</strong> usa las líneas del panel "¿Es una emergencia?" o acude a urgencias.</li>
         </ul>
       </section>

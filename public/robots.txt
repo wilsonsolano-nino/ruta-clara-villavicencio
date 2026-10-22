@@ -1,0 +1,4 @@
+# Ruta Clara Villavicencio: todo el sitio es público y se puede indexar.
+# Cuando haya dominio, agregar: Sitemap: https://DOMINIO/sitemap.xml
+User-agent: *
+Allow: /

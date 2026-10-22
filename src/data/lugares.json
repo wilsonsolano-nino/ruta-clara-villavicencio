@@ -1,0 +1,73 @@
+{
+  "_nota": "Sedes con servicios de salud mental en Villavicencio, tomadas del Registro Especial de Prestadores (REPS) de MinSalud. Siguen la regla de fuente y fecha: si pasan más de 30 días sin verificar, se ocultan. 'origenUbicacion' indica de dónde salió el punto del mapa.",
+  "lugares": [
+    {
+      "id": "hdv",
+      "nombre": "Hospital Departamental de Villavicencio E.S.E.",
+      "descripcion": "Hospital público con unidad de salud mental y servicio de urgencias.",
+      "naturaleza": "Pública",
+      "direccion": "Calle 37A N.º 28-53, barrio Barzal Alto",
+      "telefono": "(608) 681 7901",
+      "codigoHabilitacion": "500010052901",
+      "coordenadas": { "lat": 4.143658, "lng": -73.64419 },
+      "origenUbicacion": "sitio_oficial",
+      "fuente": {
+        "nombre": "REPS de MinSalud (datos abiertos, corte 12 mar 2026) y sitio oficial hdv.gov.co",
+        "url": "https://www.hdv.gov.co/paginas/salud-mental"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta del REPS y del sitio oficial)"
+    },
+    {
+      "id": "monte-sinai-ambulatoria",
+      "nombre": "IPS Salud Mental Monte Sinaí · sede ambulatoria",
+      "descripcion": "Sede de consulta ambulatoria, en el cuarto piso (consultorio 412).",
+      "naturaleza": "Privada",
+      "direccion": "Calle 33 N.º 33-34, consultorio 412, piso 4",
+      "telefono": "300 204 3093",
+      "codigoHabilitacion": "500010165903",
+      "coordenadas": { "lat": 4.14478, "lng": -73.6357 },
+      "origenUbicacion": "direccion",
+      "fuente": {
+        "nombre": "REPS de MinSalud (datos abiertos, corte 12 mar 2026)",
+        "url": "https://www.datos.gov.co/Salud-y-Protecci-n-Social/Registro-Especial-de-Prestadores-y-Sedes-de-Servic/c36g-9fc2"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta del REPS)"
+    },
+    {
+      "id": "monte-sinai-principal",
+      "nombre": "IPS Salud Mental Monte Sinaí · sede principal",
+      "descripcion": "Sede principal de la IPS, en zona rural (km 3 de la vía a Restrepo).",
+      "naturaleza": "Privada",
+      "direccion": "Km 3 vía Restrepo, vereda El Cairo, Hacienda San José",
+      "telefono": "320 952 4220",
+      "codigoHabilitacion": "500010165901",
+      "coordenadas": { "lat": 4.1730526, "lng": -73.6012685 },
+      "origenUbicacion": "directorio",
+      "fuente": {
+        "nombre": "REPS de MinSalud (datos abiertos, corte 12 mar 2026)",
+        "url": "https://www.datos.gov.co/Salud-y-Protecci-n-Social/Registro-Especial-de-Prestadores-y-Sedes-de-Servic/c36g-9fc2"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta del REPS)"
+    },
+    {
+      "id": "samen-urbana",
+      "nombre": "Clínica SAMEN IPS",
+      "descripcion": "Sede urbana de la clínica de salud mental, en el barrio La Esperanza.",
+      "naturaleza": "Privada",
+      "direccion": "Carrera 48 N.º 10-92, barrio La Esperanza",
+      "telefono": "310 365 7023",
+      "codigoHabilitacion": "500010225001",
+      "coordenadas": { "lat": 4.12934, "lng": -73.63798 },
+      "origenUbicacion": "direccion",
+      "fuente": {
+        "nombre": "REPS de MinSalud (datos abiertos, corte 12 mar 2026)",
+        "url": "https://www.datos.gov.co/Salud-y-Protecci-n-Social/Registro-Especial-de-Prestadores-y-Sedes-de-Servic/c36g-9fc2"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta del REPS)"
+    }
+  ]
+}

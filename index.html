@@ -3,15 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ruta Clara Villavicencio: orientación y apoyo emocional a tu alcance. Encuentra el canal oficial adecuado, con fuente y fecha de verificación." />
+    <title>Ruta Clara Villavicencio · Orientación y apoyo emocional para jóvenes</title>
+    <meta name="description" content="Encuentra con quién hablar en Villavicencio: líneas oficiales de apoyo emocional y lugares de atención en salud mental, cada uno con fuente y fecha de verificación. Sin registro y sin datos personales." />
     <meta name="theme-color" content="#f5f0e7" />
+
+    <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, X). -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ruta Clara Villavicencio" />
+    <meta property="og:title" content="Ruta Clara Villavicencio · ¿Con quién puedo hablar?" />
+    <meta property="og:description" content="Líneas oficiales de apoyo emocional y lugares de atención en salud mental en Villavicencio, con fuente y fecha de verificación." />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary" />
+    <!--
+      Cuando haya dominio, agregar aquí (cambiando https://DOMINIO por la dirección real):
+      <link rel="canonical" href="https://DOMINIO/" />
+      <meta property="og:url" content="https://DOMINIO/" />
+      <meta property="og:image" content="https://DOMINIO/marca/icono-512.png" />
+      y la línea "Sitemap" en public/robots.txt. Ver LEEME.md, sección SEO.
+    -->
+
+    <!-- Datos estructurados: describen la herramienta para los buscadores. No es un servicio de salud. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ruta Clara Villavicencio",
+        "description": "Orientador que indica qué canal oficial de apoyo emocional puede atender tu consulta en Villavicencio. No diagnostica ni reemplaza a un servicio de salud.",
+        "inLanguage": "es-CO",
+        "applicationCategory": "ReferenceApplication",
+        "operatingSystem": "Cualquiera (navegador web)",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP" },
+        "areaServed": { "@type": "City", "name": "Villavicencio, Meta, Colombia" },
+        "audience": { "@type": "PeopleAudience", "suggestedMinAge": 14, "suggestedMaxAge": 28 }
+      }
+    </script>
+
     <link rel="icon" type="image/png" href="./marca/favicon-64.png" />
     <link rel="apple-touch-icon" href="./marca/icono-192.png" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Literata:opsz,wght@7..72,600&display=swap" rel="stylesheet" />
-    <title>Ruta Clara Villavicencio</title>
     <script>
       // Aplica el modo oscuro elegido antes de pintar, para evitar un parpadeo. El modo claro es la base.
       try {
@@ -20,7 +53,16 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Texto que leen los buscadores y quien no tenga JavaScript; React lo reemplaza al cargar.
+           Sin teléfonos a propósito: los contactos solo se muestran con su verificación vigente. -->
+      <main style="max-width: 640px; margin: 48px auto; padding: 0 20px; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1>Ruta Clara Villavicencio</h1>
+        <p>Orientación y apoyo emocional a tu alcance. Responde dos preguntas y te mostramos el canal oficial que puede orientarte en Villavicencio, sin registro y sin preguntas sobre tu salud.</p>
+        <p>Incluye un directorio de líneas oficiales con fuente y fecha de verificación, un mapa de lugares de atención en salud mental y guías de autocuidado.</p>
+        <p>Ruta Clara no es un servicio de salud. Para usarla, activa JavaScript en tu navegador.</p>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

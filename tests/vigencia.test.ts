@@ -43,14 +43,4 @@ describe('Función crítica 1 · Directorio verificado con vigencia', () => {
     expect(evaluarVigencia({ ...LOCAL_LLAMADA_WA, fechaVerificacion: '2027-01-01' }, HOY).mostrable).toBe(false);
     expect(aDias('19/10/2026')).toBeNull();
   });
-
-  it('CP-08 · Un reporte de falla marca "en revisión" sin ocultar el contacto', () => {
-    const r = evaluarVigencia(LOCAL_LLAMADA_WA, HOY, 1);
-    expect(r.estado).toBe('en_revision');
-    expect(r.mostrable).toBe(true);
-  });
-
-  it('CP-09 · Un reporte no "revive" un dato vencido', () => {
-    expect(evaluarVigencia(VENCIDO, HOY, 2).estado).toBe('vencido');
-  });
 });

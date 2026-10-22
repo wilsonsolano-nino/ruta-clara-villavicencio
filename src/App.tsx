@@ -1,24 +1,30 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import datos from './data/servicios.json';
-import type { MotivoReporte, Reporte, Servicio } from './logic/tipos';
+import datosRecursos from './data/recursos.json';
+import datosLugares from './data/lugares.json';
+import type { Lugar, Recurso, Servicio } from './logic/tipos';
 import { evaluarVigencia, hoyISO } from './logic/vigencia';
 import { formatearFecha } from './logic/formato';
-import { cargarReportes, contarAbiertos, crearReporte, guardarReportes } from './logic/reportes';
 import { Orientador } from './components/Orientador';
 import { Directorio } from './components/Directorio';
 import { ComoFunciona } from './components/ComoFunciona';
-import { PanelVerificador } from './components/PanelVerificador';
+import { Recursos } from './components/Recursos';
+import { Privacidad } from './components/Privacidad';
+import { Lugares } from './components/Lugares';
 import { BarraApoyo } from './components/BarraApoyo';
-import { DialogoReporte } from './components/DialogoReporte';
 
 const SERVICIOS = datos.servicios as Servicio[];
+const RECURSOS = datosRecursos.recursos as Recurso[];
+const LUGARES = datosLugares.lugares as Lugar[];
 // '#emergencia' es el orientador abierto directamente en el resultado de emergencia.
-const VISTAS = ['orientar', 'emergencia', 'directorio', 'como', 'verificador'] as const;
+// '#lugares' es el mapa de atención presencial; vive bajo la pestaña Directorio.
+const VISTAS = ['orientar', 'emergencia', 'directorio', 'lugares', 'recursos', 'como', 'privacidad'] as const;
 type Vista = (typeof VISTAS)[number];
 
 const TABS: { id: Vista; texto: string }[] = [
   { id: 'orientar', texto: 'Orientarme' },
   { id: 'directorio', texto: 'Directorio' },
+  { id: 'recursos', texto: 'Recursos' },
   { id: 'como', texto: 'Cómo funciona' },
 ];
 
@@ -30,12 +36,7 @@ function vistaDesdeHash(): Vista {
 
 export default function App() {
   const [vista, setVista] = useState<Vista>(vistaDesdeHash);
-  const [reportes, setReportes] = useState<Reporte[]>(() => cargarReportes());
-  const [reportando, setReportando] = useState<string | null>(null);
-  const [aviso, setAviso] = useState<string | null>(null);
-  // Modo demo: permite simular la fecha para mostrar en el pitch cómo vencen los datos.
-  const [fechaDemo, setFechaDemo] = useState<string>('');
-  const hoy = fechaDemo || hoyISO();
+  const hoy = hoyISO();
   // El modo claro es la base; el oscuro es opcional y se recuerda en este navegador (ver index.html).
   const [tema, setTema] = useState<'claro' | 'oscuro'>(() => (document.documentElement.dataset.theme === 'dark' ? 'oscuro' : 'claro'));
 
@@ -59,28 +60,21 @@ export default function App() {
     return () => window.removeEventListener('hashchange', alCambiar);
   }, []);
 
-  useEffect(() => guardarReportes(reportes), [reportes]);
+  // Ruta Clara no guarda reportes: borra los que hubieran quedado de versiones anteriores del prototipo.
   useEffect(() => {
-    if (!aviso) return;
-    const t = setTimeout(() => setAviso(null), 4000);
-    return () => clearTimeout(t);
-  }, [aviso]);
+    try {
+      localStorage.removeItem('rutaclara.reportes.v1');
+    } catch {
+      /* sin almacenamiento: no hay nada que borrar */
+    }
+  }, []);
 
-  const abiertos = useMemo(() => contarAbiertos(reportes), [reportes]);
-  const servicioReportado = SERVICIOS.find((s) => s.id === reportando);
-  const tabActual = vista === 'emergencia' ? 'orientar' : vista;
+  const tabActual = vista === 'emergencia' ? 'orientar' : vista === 'lugares' ? 'directorio' : vista;
   // Fecha real de la verificación más reciente entre los datos que hoy se muestran.
   const ultimaVerificacion = SERVICIOS.filter((s) => evaluarVigencia(s, hoy).mostrable)
     .map((s) => s.fechaVerificacion!)
     .sort()
     .pop();
-
-  const enviarReporte = (motivo: MotivoReporte, comentario: string) => {
-    if (!reportando) return;
-    setReportes((r) => [...r, crearReporte(reportando, motivo, comentario, hoy)]);
-    setReportando(null);
-    setAviso('Gracias. El dato quedó "en revisión" para el equipo verificador.');
-  };
 
   return (
     <>
@@ -110,12 +104,6 @@ export default function App() {
         </div>
       </header>
 
-      {fechaDemo && (
-        <div className="fecha-simulada" role="status">
-          <p>Modo demostración: fecha simulada {formatearFecha(fechaDemo)}. <a href="#verificador">Cambiar</a></p>
-        </div>
-      )}
-
       <div className="marco">
         <main id="principal" className="principal" tabIndex={-1}>
           <div className="vista" key={vista}>
@@ -124,27 +112,15 @@ export default function App() {
                 key={vista}
                 servicios={SERVICIOS}
                 hoy={hoy}
-                reportesAbiertos={abiertos}
-                onReportar={setReportando}
+                recursos={RECURSOS}
                 propositoInicial={vista === 'emergencia' ? 'emergencia' : null}
               />
             )}
-            {vista === 'directorio' && (
-              <Directorio servicios={SERVICIOS} hoy={hoy} reportesAbiertos={abiertos} onReportar={setReportando} />
-            )}
+            {vista === 'directorio' && <Directorio servicios={SERVICIOS} lugares={LUGARES} hoy={hoy} />}
+            {vista === 'lugares' && <Lugares lugares={LUGARES} hoy={hoy} />}
+            {vista === 'recursos' && <Recursos recursos={RECURSOS} />}
             {vista === 'como' && <ComoFunciona />}
-            {vista === 'verificador' && (
-              <PanelVerificador
-                servicios={SERVICIOS}
-                hoy={hoy}
-                reportes={reportes}
-                reportesAbiertos={abiertos}
-                fechaDemo={fechaDemo}
-                onFechaDemo={setFechaDemo}
-                onResolver={(id) => setReportes((r) => r.map((x) => (x.id === id ? { ...x, estado: 'resuelto' } : x)))}
-                onBorrarReportes={() => setReportes([])}
-              />
-            )}
+            {vista === 'privacidad' && <Privacidad />}
           </div>
         </main>
         <div className="lateral">
@@ -161,15 +137,17 @@ export default function App() {
 
       <footer className="pie-interior">
         <div className="pie">
-          <span>Ruta Clara Villavicencio te orienta hacia canales oficiales. No es un servicio de salud. Prototipo TRL 4, Hackathon Villavicencio 2026, reto Mente Sana Joven.</span>
-          <a href="#verificador">Panel del equipo verificador (demo)</a>
+          <p className="pie-proposito">
+            Ruta Clara Villavicencio te orienta hacia canales oficiales. <strong>No es un servicio de salud.</strong>
+          </p>
+          <div className="pie-privacidad">
+            <a href="#privacidad">Política de tratamiento de datos</a>
+            <p>No pedimos datos personales ni guardamos nada de lo que haces. El mapa de Google solo se carga si lo pides. Ley 1581 de 2012.</p>
+          </div>
+          <p className="pie-legal">Prototipo TRL 4 · Hackathon Villavicencio 2026 · Reto Mente Sana Joven</p>
         </div>
       </footer>
 
-      {aviso && <div className="toast" role="status">{aviso}</div>}
-      {servicioReportado && (
-        <DialogoReporte nombreServicio={servicioReportado.nombre} onEnviar={enviarReporte} onCerrar={() => setReportando(null)} />
-      )}
     </>
   );
 }

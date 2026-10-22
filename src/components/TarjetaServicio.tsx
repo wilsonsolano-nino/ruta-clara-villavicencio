@@ -5,7 +5,6 @@ import { IconoCanal } from './Iconos';
 
 interface Props {
   rec: Pick<Recomendacion, 'servicio' | 'vigencia'> & { canalesSugeridos?: TipoCanal[] };
-  onReportar?: (servicioId: string) => void;
   destacada?: boolean;
 }
 
@@ -22,7 +21,7 @@ function hace(dias: number | null): string {
 }
 
 /** Entrada de un servicio con contacto vigente. Los no mostrables se listan aparte, sin contacto (ver Directorio). */
-export function TarjetaServicio({ rec, onReportar, destacada }: Props) {
+export function TarjetaServicio({ rec, destacada }: Props) {
   const { servicio: s, vigencia: v } = rec;
   const canales = rec.canalesSugeridos ? s.canales.filter((c) => rec.canalesSugeridos!.includes(c.tipo)) : s.canales;
 
@@ -48,21 +47,12 @@ export function TarjetaServicio({ rec, onReportar, destacada }: Props) {
         </div>
       )}
 
-      {v.estado === 'en_revision' && (
-        <p className="aviso-revision" role="note">Alguien reportó un problema con este dato. Si no logras comunicarte, usa otra línea.</p>
-      )}
-
       <div className="servicio-pie">
         {/* Verificación: estado + fecha + fuente, siempre juntos (regla "fuente y fecha" del reto). */}
         <p className={`verificacion verificacion-${v.estado}`}>
           <strong>Verificado</strong> el {formatearFecha(s.fechaVerificacion)}{hace(v.diasDesdeVerificacion)}.{NOTA_ESTADO[v.estado]}{' '}
           Fuente: {s.fuente ? (s.fuente.url ? <a href={s.fuente.url} target="_blank" rel="noreferrer">{s.fuente.nombre}</a> : s.fuente.nombre) : 'pendiente de registrar'}.
         </p>
-        {onReportar && (
-          <button type="button" className="enlace-boton" onClick={() => onReportar(s.id)}>
-            Reportar dato incorrecto
-          </button>
-        )}
       </div>
     </article>
   );

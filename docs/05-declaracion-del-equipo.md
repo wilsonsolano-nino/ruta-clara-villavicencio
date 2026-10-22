@@ -31,10 +31,12 @@ No hay trabajo previo. El proyecto se inició el 20 de octubre de 2026, después
 | Vitest | 2.1.4 | MIT |
 | Fuente Atkinson Hyperlegible Next (Google Fonts) | — | SIL Open Font License 1.1 |
 | Fuente Literata (Google Fonts) | — | SIL Open Font License 1.1 |
+| Mapa insertado de Google Maps (solo se carga si la persona lo acepta) | — | Términos de servicio de Google Maps |
 
 ## Datos
 
 - **Datos de contacto:** públicos, del directorio de MinSalud citado en el kickoff.
+- **Lugares del mapa:** públicos, del Registro Especial de Prestadores (REPS) de MinSalud en datos.gov.co. Las coordenadas salen del sitio oficial del hospital, de OpenStreetMap (licencia ODbL) o de un directorio público, y se indica cuál en cada lugar.
 - **Datos de prueba:** 100 % sintéticos (`tests/escenarios.ts`).
 - **No se usan** datos personales, datos de salud reales ni credenciales. El repositorio no contiene llaves API.
 

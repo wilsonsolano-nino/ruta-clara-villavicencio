@@ -29,25 +29,26 @@ El kickoff pide cubrir: problema, usuario, solución, demo, evidencia, estado TR
 
 1. Inicio: señalar el aviso "no es un servicio de salud" y la barra fija con 106 y Yo Te Escucho.
 2. Elegir **"Quiero hablar con alguien" → "WhatsApp"**. Aparece Yo Te Escucho con su fuente y fecha. Abrir **"¿Por qué te mostramos esto?"**.
-3. **Reportar dato incorrecto**: escribir un teléfono en el comentario y mostrar que la app lo bloquea. Enviar el reporte sin comentario y mostrar que el servicio queda "En revisión".
+3. **Mapa**: volver al inicio, elegir **"Prefiero ir a un lugar en persona"**, tocar "Ver en el mapa" en el Hospital Departamental y luego "Cómo llegar". *"Son instituciones habilitadas por MinSalud, con su código. El mapa de Google solo carga si la persona lo pide, y no usamos su ubicación."*
 4. **Directorio**: mostrar los datos "Por verificar" (123 y 01 8000) con el contacto oculto: *"no lo mostramos porque aún no tenemos su fuente; la regla aplica para todos."*
-5. **Modo demostración** (pie de página → "Panel del equipo verificador"): mostrar la lista de pendientes y el reporte recién enviado, y luego cambiar la fecha al 25 nov 2026 y mostrar cómo los datos vencidos desaparecen. *"Si nadie hace su trabajo de verificación, la app protege al usuario."*
+5. **Recursos**: abrir "Acompañar a un amigo sin hacer de terapeuta" y señalar la fuente y la fecha de consulta. *"Hasta la información general lleva fuente."*
+6. **Política de datos** (pie de página): mostrar la tabla "Marco legal y cómo lo cumplimos". *"No pedimos datos, y lo explicamos artículo por artículo de la Ley 1581."*
 
 ### 3:20 · Evidencia y TRL 4 (50 s)
 
-> "Estamos en **TRL 4**: las dos funciones críticas están integradas y probadas en un entorno controlado. Definimos **26 casos de prueba con datos sintéticos y escenarios ficticios**, y los 26 pasan. Por ejemplo: un dato del día 30 se muestra; el del día 31, no. Una emergencia muestra primero las líneas de emergencia verificadas. Las preguntas no contienen palabras como síntoma, riesgo o diagnóstico. **Y estas son nuestras limitaciones:** los reportes viven en el navegador, el 123 aún no tiene fuente registrada y no hicimos pruebas con público, porque el reto no lo permite."
+> "Estamos en **TRL 4**: las dos funciones críticas están integradas y probadas en un entorno controlado. Definimos **24 casos de prueba con datos sintéticos y escenarios ficticios**, y los 24 pasan. Por ejemplo: un dato del día 30 se muestra; el del día 31, no. Una emergencia muestra primero las líneas de emergencia verificadas. Las preguntas no contienen palabras como síntoma, riesgo o diagnóstico. **Y estas son nuestras limitaciones:** un punto del mapa no es exacto y lo decimos en pantalla, el 123 aún no tiene fuente registrada y no hicimos pruebas con público, porque el reto no lo permite."
 
 Mostrar en pantalla: `docs/evidencia/resultados-pruebas.md`.
 
 ### 4:10 · Operación y próximos pasos (50 s)
 
-> "¿Quién lo mantiene? Proponemos un responsable en la Secretaría de Salud y estudiantes verificadores. Revisión semanal, reportes atendidos en 48 horas, unas dos horas por semana. El hosting es gratuito y estático. **Próximos pasos:** formulario institucional para los reportes, validar el lenguaje con la Secretaría de Salud y extender el modelo a otros municipios del Meta. Gracias."
+> "¿Quién lo mantiene? Proponemos un responsable en la Secretaría de Salud y estudiantes verificadores. Revisión semanal de cada línea y cada lugar, unas dos horas por semana. El hosting es gratuito y estático. **Próximos pasos:** confirmar en sitio los puntos del mapa, validar el lenguaje con la Secretaría de Salud y extender el modelo a otros municipios del Meta. Gracias."
 
 ---
 
 ## Preguntas probables del jurado
 
 - **¿Por qué no un chatbot con IA?** → Porque el reto prohíbe que actúe como profesional, y porque un árbol de reglas es auditable: cualquiera puede ver por qué se recomienda algo.
-- **¿Qué pasa si alguien reporta en falso el 106?** → El servicio no se oculta. Queda "en revisión", con advertencia, hasta que el equipo lo confirme.
-- **¿Cómo sabemos que la app no muestra datos viejos?** → Por los casos CP-04 y CP-05 y la demostración con la fecha simulada.
+- **¿Cómo se enteran si una línea deja de funcionar?** → Por la verificación semanal; y si nadie la verifica, se oculta sola a los 31 días. No recibimos reportes dentro de la app para no guardar datos de nadie.
+- **¿Cómo sabemos que la app no muestra datos viejos?** → Por los casos CP-04 y CP-05: el día 30 el dato se muestra y el día 31 se oculta, sin intervención humana.
 - **¿Guardan datos?** → No. No hay registro, y las respuestas del orientador se borran al reiniciar.

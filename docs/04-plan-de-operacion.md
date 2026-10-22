@@ -18,36 +18,33 @@ La app lo exige por sí sola: **si nadie verifica, el dato desaparece.**
 |---|---|---|
 | Día 0 | El dato se carga con fuente, fecha y verificador | — |
 | Días 1 a 23 | "Verificado" | Nada |
-| Días 24 a 30 | "Verificado · por renovar"; aparece en el panel verificador | Revisión **semanal**, todos los lunes: verificar lo que está por renovar |
+| Días 24 a 30 | "Verificado · por renovar" | Revisión **semanal**, todos los lunes: verificar lo que está por renovar |
 | Día 31 en adelante | Contacto oculto; "Verificación vencida" | Prioridad alta: verificar o dar de baja |
-| Reporte recibido | "En revisión"; baja de prioridad | Revisar en **máximo 48 horas hábiles** |
 
 **Protocolo de verificación de cada dato (unos 5 minutos):**
 
 1. Consultar la fuente oficial (página de MinSalud o de la Alcaldía) y comparar el número.
 2. Comprobar el canal: tono en la llamada y respuesta automática en WhatsApp. No se simula una consulta.
-3. Actualizar `fechaVerificacion`, `verificadoPor` y `fuente.url` en `servicios.json`.
+3. Actualizar `fechaVerificacion`, `verificadoPor` y `fuente.url` en `servicios.json`. Para los lugares del mapa, revisar la sede en el REPS de MinSalud (datos abiertos) y actualizar `lugares.json`.
 4. Guardar el cambio en Git con un mensaje del tipo `verifica: yo-te-escucho 2026-11-16`.
 
 ## ¿Cómo se reporta un dato inactivo?
 
-1. **Cualquier persona** pulsa "Reportar dato incorrecto" en la tarjeta del servicio.
-2. Elige el motivo: no contestan, número equivocado, enlace caído, horario distinto u otro. Puede dejar un comentario opcional; **la app bloquea teléfonos, correos y números de documento**.
-3. El servicio pasa a **"En revisión"**: sigue visible, pero con una advertencia y por debajo de las alternativas.
-4. El equipo verificador ve el reporte en el **Panel del equipo verificador**, lo exporta a CSV, lo verifica y lo marca como revisado.
+**Decisión de diseño: la app no recibe reportes.** Un formulario dentro de Ruta Clara obligaría a guardar lo que escribe la persona, y preferimos no guardar nada. La detección de datos caídos se resuelve así:
 
-**En el prototipo** los reportes se guardan en el navegador. **En operación** se enviarían a un formulario institucional (por ejemplo, Microsoft Forms o Google Forms de la Alcaldía), sin datos personales, con alerta por correo al responsable.
+1. **Verificación activa:** el equipo comprueba cada canal todos los lunes (protocolo de arriba). No depende de que alguien avise.
+2. **La regla de 30 días protege sola:** un dato que nadie reverifica se oculta automáticamente, aunque nadie lo haya reportado.
+3. **Canal institucional fuera de la app:** en operación, la entidad responsable publica en la política de datos un correo o teléfono de atención (por ejemplo, el de la Secretaría Local de Salud) para quien quiera avisar que una línea no funciona. Ese aviso lo recibe y lo trata la entidad bajo su propia política, no Ruta Clara.
 
 ## Indicadores de operación
 
 - Porcentaje de servicios vigentes. Meta: 100 %.
 - Días promedio desde la última verificación. Meta: menos de 20.
-- Tiempo de respuesta a los reportes. Meta: menos de 48 horas hábiles.
-- Reportes por servicio por mes, como alerta de calidad.
+- Datos ocultos por vencimiento en el mes. Meta: 0 (significa que la verificación semanal se cumplió).
 
 ## Sostenibilidad y costos
 
 - **Hosting:** estático y gratuito (Vercel o GitHub Pages). Sin servidor ni base de datos que mantener.
 - **Datos:** un archivo JSON versionado. Cualquier verificador lo edita con una guía de una página.
 - **Costo de operación:** el tiempo de los verificadores, unas 2 horas semanales para 30 servicios.
-- **Escalabilidad:** el mismo modelo sirve para otros municipios del Meta cambiando solo `servicios.json`.
+- **Escalabilidad:** el mismo modelo sirve para otros municipios del Meta cambiando `servicios.json` y `lugares.json`.

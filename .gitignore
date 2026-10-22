@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 *.log
+
+# Archivo intermedio de "npm run evidencia"; el resultado legible es resultados-pruebas.md
+docs/evidencia/resultados-pruebas.json

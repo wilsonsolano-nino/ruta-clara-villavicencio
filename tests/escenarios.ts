@@ -57,5 +57,5 @@ export const PRESENCIAL: Servicio = {
 
 export const TODOS = [LOCAL_LLAMADA_WA, NACIONAL_LLAMADA, EMERGENCIA, SIN_FUENTE, VENCIDO, PRESENCIAL];
 
-/** Fecha simulada de la demo: un día después de la verificación. */
+/** Fecha fija de las pruebas: un día después de la verificación. */
 export const HOY = '2026-10-20';

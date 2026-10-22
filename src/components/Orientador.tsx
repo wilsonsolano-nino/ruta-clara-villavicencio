@@ -7,14 +7,14 @@ import {
   type PreferenciaCanal,
   type Proposito,
 } from '../logic/orientador';
-import type { Servicio } from '../logic/tipos';
+import type { Recurso, Servicio } from '../logic/tipos';
 import { TarjetaServicio } from './TarjetaServicio';
 
 interface Props {
   servicios: Servicio[];
   hoy: string;
-  reportesAbiertos: Record<string, number>;
-  onReportar: (id: string) => void;
+  /** Guías de Recursos: el resultado "me preocupa alguien" muestra la de acompañar. */
+  recursos: Recurso[];
   /** 'emergencia' abre directamente el resultado de emergencia (ruta #emergencia). */
   propositoInicial: Proposito | null;
 }
@@ -22,14 +22,15 @@ interface Props {
 // La emergencia no va en el cuestionario: tiene acceso directo y permanente en la franja de emergencia.
 const OPCIONES_PROPOSITO = PREGUNTA_PROPOSITO.opciones.filter((o) => o.valor !== 'emergencia');
 
-export function Orientador({ servicios, hoy, reportesAbiertos, onReportar, propositoInicial }: Props) {
+export function Orientador({ servicios, hoy, recursos, propositoInicial }: Props) {
   const [proposito, setProposito] = useState<Proposito | null>(propositoInicial);
   const [canal, setCanal] = useState<PreferenciaCanal | null>(null);
   const resultadoRef = useRef<HTMLHeadingElement>(null);
   const preguntaRef = useRef<HTMLHeadingElement>(null);
 
   const listo = proposito !== null && (!necesitaCanal({ proposito }) || canal !== null);
-  const resultado = listo ? orientar({ proposito: proposito!, canal: canal ?? undefined }, servicios, hoy, reportesAbiertos) : null;
+  const resultado = listo ? orientar({ proposito: proposito!, canal: canal ?? undefined }, servicios, hoy) : null;
+  const guia = resultado?.guia ? recursos.find((r) => r.id === resultado.guia) : undefined;
   const paso = proposito === null ? 1 : listo ? 3 : 2;
   // Si se llega por #emergencia, el foco va directo al resultado.
   const pasoPrevio = useRef(propositoInicial ? 0 : paso);
@@ -66,7 +67,8 @@ export function Orientador({ servicios, hoy, reportesAbiertos, onReportar, propo
             </legend>
             <div className="opciones">
               {OPCIONES_PROPOSITO.map((o) => (
-                <button key={o.valor} type="button" className="opcion" onClick={() => setProposito(o.valor)}>
+                // "Ir en persona" abre directamente el mapa: no hay nada más que preguntar.
+                <button key={o.valor} type="button" className="opcion" onClick={() => (o.valor === 'en_persona' ? (window.location.hash = 'lugares') : setProposito(o.valor))}>
                   <span className="opcion-texto">{o.texto}</span>
                   {o.ayuda && <span className="opcion-ayuda">{o.ayuda}</span>}
                 </button>
@@ -85,6 +87,7 @@ export function Orientador({ servicios, hoy, reportesAbiertos, onReportar, propo
               {PREGUNTA_CANAL.opciones.map((o) => (
                 <button key={o.valor} type="button" className="opcion" onClick={() => setCanal(o.valor)}>
                   <span className="opcion-texto">{o.texto}</span>
+                  {o.ayuda && <span className="opcion-ayuda">{o.ayuda}</span>}
                 </button>
               ))}
             </div>
@@ -97,9 +100,21 @@ export function Orientador({ servicios, hoy, reportesAbiertos, onReportar, propo
             <h3 ref={resultadoRef} tabIndex={-1}>{resultado.titulo}</h3>
             <p className="resultado-mensaje">{resultado.mensaje}</p>
 
+            {guia && (
+              <div className="guia-apoyo guia-en-resultado">
+                <h4>{guia.titulo}</h4>
+                <div className="guia-pautas">
+                  {guia.pautas.map((p) => (
+                    <p key={p.idea}><strong>{p.idea}</strong> {p.texto}</p>
+                  ))}
+                </div>
+                <p className="verificacion">Basado en: {guia.fuentes.map((f) => f.nombre).join(' · ')}. <a href="#recursos">Ver más recursos</a></p>
+              </div>
+            )}
+
             <div className="lista-tarjetas">
               {resultado.recomendaciones.map((r, i) => (
-                <TarjetaServicio key={r.servicio.id} rec={r} onReportar={onReportar} destacada={i === 0} />
+                <TarjetaServicio key={r.servicio.id} rec={r} destacada={i === 0} />
               ))}
             </div>
 
@@ -112,6 +127,7 @@ export function Orientador({ servicios, hoy, reportesAbiertos, onReportar, propo
             <div className="acciones-final">
               <button type="button" className="boton boton-secundario" onClick={reiniciar}>Empezar de nuevo</button>
               {resultado.irADirectorio && <a href="#directorio">Ver directorio completo</a>}
+              {resultado.irALugares && <a href="#lugares">Ver lugares en el mapa</a>}
             </div>
           </div>
         )}

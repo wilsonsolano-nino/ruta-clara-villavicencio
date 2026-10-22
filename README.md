@@ -12,7 +12,7 @@ Ruta Clara Villavicencio es una web app instalable (PWA) que acorta la distancia
 |---|---|---|
 | 1 | **Directorio verificado con vigencia** | Cada teléfono o ruta guarda fuente oficial, fecha y responsable de verificación. A los 24 días se marca "por renovar". A los 31 días **se oculta el contacto** de forma automática. Los datos sin fuente nunca se muestran. |
 | 2 | **Orientador por tipo de consulta** | Hace 2 preguntas: qué buscas y cómo prefieres comunicarte. No pregunta síntomas. Es un árbol de reglas transparente que explica "por qué te mostramos esto". |
-| + | **Reporte de dato caído** | Cualquier persona reporta un número o enlace que falla. El dato queda "en revisión", baja de prioridad y aparece en el panel del equipo verificador, que lo puede exportar a CSV. El formulario bloquea teléfonos, correos y documentos para cumplir con cero datos personales. |
+| + | **Mapa de lugares de atención** | Instituciones de salud mental de Villavicencio habilitadas en el REPS de MinSalud, con la misma regla de fuente y fecha. También aparecen en el filtro "Presencial" del Directorio. Google Maps solo se carga cuando la persona lo pide; la app no usa su ubicación. |
 
 ## Cómo ejecutarlo
 
@@ -21,25 +21,28 @@ Requisitos: Node.js 18 o superior.
 ```bash
 npm install
 npm run dev        # abre http://localhost:5173
-npm test           # corre los 26 casos de prueba
+npm test           # corre los 24 casos de prueba
 npm run evidencia  # regenera docs/evidencia/resultados-pruebas.md
 npm run build      # genera /dist para publicar (Vercel, Netlify, GitHub Pages)
 ```
 
-**Modo demostración (para el jurado):** en el pie de página, el enlace "Panel del equipo verificador (demo)" abre la vista del operador (`#verificador`). Ahí se simula la fecha: con una fecha posterior al 18 nov 2026, los datos vencidos se ocultan solos. Mientras la fecha simulada está activa, una franja amarilla lo indica en todas las pantallas.
+Además del orientador y el directorio, la app incluye **Recursos** (guías de autocuidado y de cómo acompañar a otra persona, cada una con fuente oficial y fecha de consulta), **preguntas frecuentes** en "Cómo funciona" y la **política de tratamiento de datos** basada en la Ley 1581 de 2012 y el Decreto 1377 de 2013, enlazada en el pie de página.
 
-Cada vista tiene su URL (`#orientar`, `#directorio`, `#como`, `#verificador`), así que el botón "atrás" del celular funciona.
+La app no guarda nada de lo que hace la persona: no hay registro, formularios ni reportes; solo el navegador recuerda el modo oscuro si se activa.
+
+Cada vista tiene su URL (`#orientar`, `#directorio`, `#lugares`, `#recursos`, `#como`, `#privacidad`), así que el botón "atrás" del celular funciona.
 
 ## Estructura
 
 ```
 src/
   data/servicios.json      ← directorio: único lugar donde se editan los datos
+  data/recursos.json       ← guías informativas, con fuentes y fecha de consulta
+  data/lugares.json        ← lugares del mapa (REPS de MinSalud), con fuente, fecha y origen del punto
   logic/vigencia.ts        ← regla de salvaguarda (fuente + fecha + 30 días)
   logic/orientador.ts      ← árbol de decisión sin evaluación de riesgo
-  logic/reportes.ts        ← reportes de datos caídos y filtro de datos personales
-  components/              ← interfaz React accesible (PanelVerificador = vista del operador)
-tests/                     ← 26 casos de prueba con datos sintéticos
+  components/              ← interfaz React accesible
+tests/                     ← 24 casos de prueba con datos sintéticos
 docs/                      ← entregables de la hackathon
 ```
 
