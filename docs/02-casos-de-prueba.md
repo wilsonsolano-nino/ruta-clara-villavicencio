@@ -35,7 +35,7 @@
 | CP-12 | Emergencia sin línea de emergencias verificada | Emergencia | Respaldo con líneas 24 h |
 | CP-13 | Sofía pregunta por un amigo | Otra persona | Sin segunda pregunta; consejos de la guía "Acompañar" y líneas por llamada o WhatsApp |
 | CP-14 | Canal sin oferta | WhatsApp, pero solo hay llamada | Respaldo con explicación |
-| CP-15 | Nada vigente | Todo vencido o sin fuente | No muestra ningún teléfono y remite a la fuente oficial |
+| CP-15 | Nada vigente | Todo vencido o sin fuente | No muestra ningún teléfono; remite a la fuente oficial y, si es emergencia, a urgencias |
 | CP-16 | Transparencia | Todos los propósitos | Siempre explica la regla aplicada |
 | CP-17 | Salvaguarda de lenguaje | Textos de preguntas | No contienen síntoma, diagnóstico, riesgo, nombre, edad ni escala |
 | CP-18 | Sin respuestas redundantes | Los 4 propósitos | Cada propósito da un resultado distinto; "ir en persona" lleva al mapa; el canal es solo "Llamar" o "WhatsApp" |
@@ -47,8 +47,8 @@
 | CP-19 | `servicios.json` real | Todo lo mostrable tiene fuente con enlace oficial (`.gov.co`), fecha y responsable |
 | CP-20 | Datos con y sin fuente | Lo que no tiene fuente (Secretaría de Salud) queda "por verificar" y no se expone; 123, 106 y Yo Te Escucho se muestran |
 | CP-21 | Integridad | IDs únicos y al menos un canal por servicio |
-| CP-22 | `recursos.json` real | Cada guía tiene pautas, al menos una fuente con enlace https y una fecha de consulta válida |
-| CP-23 | Salvaguarda de lenguaje en las guías | No contienen diagnóstico, síntoma, trastorno, tratamiento, medicamento ni escala |
+| CP-22 | `recursos.json` real | Cada guía tiene pautas, al menos una fuente con enlace https y una fecha de consulta válida. Incluye el consejo que se ve mientras carga el mapa: su fuente debe estar registrada en Recursos |
+| CP-23 | Salvaguarda de lenguaje en las guías y en el consejo de carga | No contienen diagnóstico, síntoma, trastorno, tratamiento, medicamento ni escala |
 
 ### Mapa de lugares de atención
 

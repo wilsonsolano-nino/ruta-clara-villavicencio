@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import datos from '../src/data/servicios.json';
 import datosRecursos from '../src/data/recursos.json';
+import { CONSEJO_CARGA } from '../src/logic/consejoCarga';
 import type { Recurso, Servicio } from '../src/logic/tipos';
 import { aDias, evaluarVigencia } from '../src/logic/vigencia';
 
@@ -34,7 +35,9 @@ describe('Integridad del directorio real (servicios.json)', () => {
 });
 
 describe('Recursos informativos (recursos.json)', () => {
-  it('CP-22 · Cada guía cita al menos una fuente con enlace y una fecha de consulta válida', () => {
+  it('CP-22 · Cada guía, y el consejo que se ve mientras carga el mapa, cita fuente con enlace y fecha de consulta válida', () => {
+    // El consejo de carga cita una fuente que ya está registrada en Recursos.
+    expect(recursos.flatMap((r) => r.fuentes.map((f) => f.url))).toContain(CONSEJO_CARGA.urlFuente);
     for (const r of recursos) {
       expect(r.fuentes.length).toBeGreaterThan(0);
       for (const f of r.fuentes) {
@@ -46,11 +49,12 @@ describe('Recursos informativos (recursos.json)', () => {
     }
   });
 
-  it('CP-23 · Las guías no usan lenguaje de diagnóstico ni de tratamiento', () => {
+  it('CP-23 · Las guías y el consejo de carga no usan lenguaje de diagnóstico ni de tratamiento', () => {
     const prohibidas = /diagn[oó]stic|s[ií]ntoma|trastorno|tratamiento|medicamento|escala/i;
     for (const r of recursos) {
       const pautas = r.pautas.flatMap((p) => [p.idea, p.texto]);
       for (const texto of [r.titulo, r.resumen, ...pautas, r.cuandoBuscarApoyo]) expect(texto).not.toMatch(prohibidas);
     }
+    for (const texto of [CONSEJO_CARGA.texto, CONSEJO_CARGA.cita]) expect(texto).not.toMatch(prohibidas);
   });
 });

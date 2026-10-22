@@ -97,7 +97,7 @@ export function orientar(respuestas: Respuestas, servicios: Servicio[], hoy: str
     ...base,
     titulo: 'No tenemos datos verificados vigentes',
     mensaje:
-      'Ninguna línea tiene hoy una verificación vigente en esta herramienta. Consulta directamente el directorio oficial de MinSalud o la página de la Alcaldía de Villavicencio.',
+      'Ninguna línea tiene hoy una verificación vigente en esta herramienta. Consulta directamente el directorio oficial de MinSalud o la página de la Alcaldía de Villavicencio. Si es una emergencia, acude al servicio de urgencias más cercano.',
     recomendaciones: [],
     porQue: 'Por seguridad, no mostramos teléfonos sin fuente oficial y fecha de verificación de los últimos 30 días.',
     irADirectorio: true,
