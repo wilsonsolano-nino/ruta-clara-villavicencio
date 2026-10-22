@@ -45,6 +45,66 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Literata:opsz,wght@7..72,600&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        background: #f5f0e7;
+        color: #26332c;
+        font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+        font-size: 1.0625rem;
+        line-height: 1.6;
+      }
+      .carga-inicial {
+        max-width: 640px;
+        margin: 48px auto;
+        padding: 0 20px;
+      }
+      .carga-inicial h1 {
+        margin: 0 0 16px;
+        color: #294c3b;
+        font-family: Literata, Georgia, serif;
+        font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .carga-inicial p {
+        margin: 0;
+      }
+      .carga-inicial p + p {
+        margin-top: 12px;
+      }
+      .carga-inicial .carga-consejo {
+        margin-top: 24px;
+        padding: 20px 24px;
+        background: #e3eadf;
+        border-left: 4px solid #8fae98;
+        border-radius: 6px;
+      }
+      .carga-inicial .carga-consejo-titulo {
+        margin-bottom: 8px;
+        font-family: Literata, Georgia, serif;
+        font-weight: 600;
+      }
+      .carga-inicial .carga-consejo-cita {
+        margin-top: 10px;
+        color: #55615a;
+        font-style: italic;
+      }
+      :root[data-theme='dark'] body {
+        background: #1d2622;
+        color: #efeae0;
+      }
+      :root[data-theme='dark'] .carga-inicial h1 {
+        color: #a3cbb4;
+      }
+      :root[data-theme='dark'] .carga-inicial .carga-consejo {
+        background: #26332c;
+        border-left-color: #8fae98;
+      }
+      :root[data-theme='dark'] .carga-inicial .carga-consejo-cita {
+        color: #bdb7ab;
+      }
+    </style>
     <script>
       // Aplica el modo oscuro elegido antes de pintar, para evitar un parpadeo. El modo claro es la base.
       try {
@@ -59,8 +119,11 @@
       <main class="carga-inicial" aria-live="polite">
         <h1>Ruta Clara Villavicencio</h1>
         <p>Estamos preparando orientación y apoyo para ti.</p>
-        <p>Hablar de lo que sientes puede ayudarte a encontrar apoyo.</p>
-        <p class="carga-consejo-cita">"Pedir ayuda es una forma de cuidarte."</p>
+        <div class="carga-consejo">
+          <p class="carga-consejo-titulo">Un consejo para este momento</p>
+          <p>Hablar de lo que sientes puede ayudarte a encontrar apoyo.</p>
+          <p class="carga-consejo-cita">"Pedir ayuda es una forma de cuidarte."</p>
+        </div>
       </main>
     </div>
     <script type="module" src="/src/main.tsx"></script>
