@@ -4,17 +4,16 @@
 
 | Servicio | Dato | Fuente | Fecha de consulta | Verificó | Estado en la app |
 |---|---|---|---|---|---|
-| Línea 106 | 106 · 24/7 | Directorio de salud mental y prevención del suicidio, MinSalud (citado en el kickoff, diapositiva 12) | 19 oct 2026 | Organización de la Hackathon | ✅ Vigente |
-| Yo Te Escucho Villavicencio | 316 390 7010 · llamada y WhatsApp · 24/7 | Igual que la anterior | 19 oct 2026 | Organización de la Hackathon | ✅ Vigente |
-| Línea 01 8000 931 089 | Titular por confirmar | Aparece en el kickoff sin nombre de entidad | — | — | ⏳ Por verificar |
-| Línea 123 | Emergencias | Pendiente | — | — | ⏳ Por verificar |
+| Línea 106 | 106 · gratuita · 24/7 · llamada y videollamada con cita | [Línea 106, página oficial de MinSalud](https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx) | 21 oct 2026 | Equipo Ruta Clara | ✅ Vigente |
+| Yo Te Escucho Villavicencio | 316 390 7010 y 01 8000 931 089 · llamada y WhatsApp · 24/7 | [Directorio Nacional de Líneas Territoriales de Atención en Salud Mental, MinSalud, agosto 2025](https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf), página 9 (Meta, Villavicencio) | 21 oct 2026 | Equipo Ruta Clara | ✅ Vigente |
+| Línea 123 | Emergencias · sin costo | [Resolución CRC 5937 de 2020](https://cancilleria.gov.co/sites/default/files/Normograma/docs/resolucion_crc_5937_2020.htm), Comisión de Regulación de Comunicaciones: en la numeración 1XY, el 123 es el "Número Único de Emergencias", sin costo para quien llama | 21 oct 2026 | Equipo Ruta Clara | ✅ Vigente |
 | Secretaría Local de Salud | Atención presencial | Pendiente | — | — | ⏳ Por verificar |
 
 ### Tareas pendientes de verificación (antes del pitch)
 
-- [ ] Abrir el directorio de MinSalud y copiar la **URL exacta** en `src/data/servicios.json` → `fuente.url`.
-- [ ] Confirmar a qué entidad pertenece el **01 8000 931 089** y registrar su fuente y fecha.
-- [ ] Registrar fuente oficial y fecha para la **línea 123**.
+- [x] Registrar la **URL exacta** de la fuente del 106 y de Yo Te Escucho en `src/data/servicios.json` → `fuente.url`.
+- [x] Confirmar a qué entidad pertenece el **01 8000 931 089**: es la línea gratuita de Yo Te Escucho, según el directorio de MinSalud.
+- [x] Registrar fuente oficial y fecha para la **línea 123**.
 - [ ] Obtener dirección y horario de la **Secretaría Local de Salud** desde villavicencio.gov.co.
 - [ ] Cambiar `verificadoPor` al nombre del integrante que hizo cada verificación.
 
@@ -55,8 +54,8 @@ Todas las sedes salen del **Registro Especial de Prestadores y Sedes (REPS)** de
 
 | Fecha | Origen | Retroalimentación o hallazgo | Cambio realizado |
 |---|---|---|---|
-| 20 oct 2026 | Revisión de salvaguardas | Ocultar un servicio con un solo reporte permitiría que un reporte malicioso dejara sin contacto a alguien. | Un reporte marca "en revisión" y baja la prioridad, pero no oculta el servicio. |
-| 20 oct 2026 | Revisión de salvaguardas | El 123 es conocido, pero no tiene fuente registrada en nuestro directorio. | Se deja "por verificar" y no se muestra. La regla aplica igual para todos los datos (CP-20). |
+| 20 oct 2026 | Revisión de salvaguardas | Ocultar un servicio con un solo reporte permitiría que un reporte malicioso dejara sin contacto a alguien. | Un reporte marca "en revisión" y baja la prioridad, pero no oculta el servicio. *(El 21 oct se eliminaron los reportes por privacidad; ver más abajo.)* |
+| 20 oct 2026 | Revisión de salvaguardas | El 123 es conocido, pero no tiene fuente registrada en nuestro directorio. | Se deja "por verificar" y no se muestra. La regla aplica igual para todos los datos (CP-20). *(El 21 oct se registró su fuente; ver más abajo.)* |
 | 20 oct 2026 | Prueba de interfaz en móvil | La navegación se desbordaba en pantallas de 390 px. | Ajuste de pestañas flexibles. Sin desplazamiento horizontal. |
 | 20 oct 2026 | Prueba de interfaz | El comentario del reporte permitía escribir teléfonos. | Filtro de datos personales con mensaje claro. |
 | 20 oct 2026 | Revisión de diseño | El panel verificador y el modo demo estaban mezclados con la vista del joven; la opción de emergencia quedaba sola en una segunda fila; los datos "por verificar" ocupaban más espacio que los verificados. | Vista aparte para el verificador, emergencia como primera opción, pendientes en una lista compacta sin contacto, URL por vista y aviso visible cuando hay fecha simulada. |
@@ -64,6 +63,8 @@ Todas las sedes salen del **Registro Especial de Prestadores y Sedes (REPS)** de
 | 21 oct 2026 | Revisión de identidad | El fondo oscuro se sentía pesado (la app seguía el modo oscuro del sistema) y faltaba la identidad de marca. | Se integra el logo oficial de Ruta Clara Villavicencio; el modo claro es la base y el oscuro es opcional; la paleta sale del logo (verde bosque, coral, salvia); la emergencia es un panel lateral fijo en escritorio y una barra en móvil; se agrega acceso directo al directorio con la fecha de la última verificación. |
 | 21 oct 2026 | Revisión del equipo | El panel del verificador y la fecha simulada no aportaban al joven: los reportes solo existían en el mismo navegador, así que el panel era una maqueta. Faltaban contenidos informativos y una política de datos con base legal. | Se retiran el panel y el modo demostración; un reporte se cierra solo cuando el dato se reverifica. Se agregan Recursos con fuentes oficiales (CP-22, CP-23), preguntas frecuentes y la política de tratamiento de datos (Ley 1581 de 2012, Decreto 1377 de 2013). |
 | 21 oct 2026 | Revisión del equipo | Recibir reportes obligaba a guardar lo que escribía la persona, aunque fuera en su navegador. El orientador era redundante: con dos líneas verificadas, casi todas las opciones llevaban al mismo resultado. Faltaba orientar a quien prefiere ir en persona. | Se elimina por completo el reporte de novedades: la app no guarda nada. El orientador da un resultado distinto por opción (CP-18): líneas según el canal, consejos para acompañar o el mapa. Se agrega el mapa de lugares del REPS, que también aparece en el filtro "Presencial" del Directorio (CP-24). Google Maps solo se carga si la persona lo pide; se descartó pedir la ubicación porque "Ver en el mapa" y "Cómo llegar" ya resuelven cómo ubicar cada lugar. Recursos se lee en párrafos con selector de temas; el pie se distingue con la superficie "hoja" y resume la política de datos; se agrega SEO básico. |
+| 21 oct 2026 | Revisión de privacidad | Los reportes de novedades obligaban a guardar lo que escribía la persona. Además, un reporte no podía ocultar una línea, así que tampoco protegía a nadie. | Se quitan los reportes y el estado "en revisión". La salvaguarda queda en la regla de 30 días y en la verificación semanal del equipo (`docs/04-plan-de-operacion.md`). |
+| 21 oct 2026 | Revisión de fuentes | El 106 y Yo Te Escucho citaban el directorio de MinSalud sin enlace; el 123 no tenía fuente, así que la opción de emergencia no mostraba el número de emergencias; el 01 8000 931 089 no tenía titular. | Se registran las fuentes con enlace: página oficial de la Línea 106, directorio nacional de MinSalud (agosto 2025) y Resolución CRC 5937 de 2020 para el 123. El 01 8000 931 089 es la línea gratuita de Yo Te Escucho y se une a esa entrada. El panel de emergencia muestra primero el 123. CP-19 exige un enlace oficial `.gov.co` en todo dato que se muestre. |
 | _completar_ | Mentoría | | |
 | _completar_ | Mentoría | | |
 

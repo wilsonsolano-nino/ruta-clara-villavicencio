@@ -37,9 +37,9 @@ export function TarjetaServicio({ rec, destacada }: Props) {
         <div className="acciones">
           {canales.map((c) => {
             const href = hrefCanal(c);
-            if (!href) return <span key={c.tipo}>{c.valor || c.etiqueta}</span>;
+            if (!href) return <span key={c.valor || c.tipo}>{c.valor || c.etiqueta}</span>;
             return (
-              <a key={c.tipo} className={`boton boton-${c.tipo}`} href={href} target={c.tipo === 'llamada' ? undefined : '_blank'} rel="noreferrer">
+              <a key={c.valor} className={`boton boton-${c.tipo}`} href={href} target={c.tipo === 'llamada' ? undefined : '_blank'} rel="noreferrer">
                 <IconoCanal tipo={c.tipo} /> {c.etiqueta}
               </a>
             );

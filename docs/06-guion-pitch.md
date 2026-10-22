@@ -27,16 +27,16 @@ El kickoff pide cubrir: problema, usuario, solución, demo, evidencia, estado TR
 
 ### 1:50 · Demo en vivo (90 s)
 
-1. Inicio: señalar el aviso "no es un servicio de salud" y la barra fija con 106 y Yo Te Escucho.
+1. Inicio: señalar el aviso "no es un servicio de salud" y el panel "¿Es una emergencia?" con el 123 y el 106.
 2. Elegir **"Quiero hablar con alguien" → "WhatsApp"**. Aparece Yo Te Escucho con su fuente y fecha. Abrir **"¿Por qué te mostramos esto?"**.
 3. **Mapa**: volver al inicio, elegir **"Prefiero ir a un lugar en persona"**, tocar "Ver en el mapa" en el Hospital Departamental y luego "Cómo llegar". *"Son instituciones habilitadas por MinSalud, con su código. El mapa de Google solo carga si la persona lo pide, y no usamos su ubicación."*
-4. **Directorio**: mostrar los datos "Por verificar" (123 y 01 8000) con el contacto oculto: *"no lo mostramos porque aún no tenemos su fuente; la regla aplica para todos."*
+4. **Directorio**: abrir la fuente de una línea (enlace a MinSalud) y mostrar la Secretaría de Salud "por verificar", sin contacto: *"no la mostramos porque aún no tenemos su fuente; la regla aplica para todos."*
 5. **Recursos**: abrir "Acompañar a un amigo sin hacer de terapeuta" y señalar la fuente y la fecha de consulta. *"Hasta la información general lleva fuente."*
 6. **Política de datos** (pie de página): mostrar la tabla "Marco legal y cómo lo cumplimos". *"No pedimos datos, y lo explicamos artículo por artículo de la Ley 1581."*
 
 ### 3:20 · Evidencia y TRL 4 (50 s)
 
-> "Estamos en **TRL 4**: las dos funciones críticas están integradas y probadas en un entorno controlado. Definimos **24 casos de prueba con datos sintéticos y escenarios ficticios**, y los 24 pasan. Por ejemplo: un dato del día 30 se muestra; el del día 31, no. Una emergencia muestra primero las líneas de emergencia verificadas. Las preguntas no contienen palabras como síntoma, riesgo o diagnóstico. **Y estas son nuestras limitaciones:** un punto del mapa no es exacto y lo decimos en pantalla, el 123 aún no tiene fuente registrada y no hicimos pruebas con público, porque el reto no lo permite."
+> "Estamos en **TRL 4**: las dos funciones críticas están integradas y probadas en un entorno controlado. Definimos **24 casos de prueba con datos sintéticos y escenarios ficticios**, y los 24 pasan. Por ejemplo: un dato del día 30 se muestra; el del día 31, no. Una emergencia muestra primero las líneas de emergencia verificadas. Las preguntas no contienen palabras como síntoma, riesgo o diagnóstico. **Y estas son nuestras limitaciones:** un punto del mapa no es exacto y lo decimos en pantalla, la dirección de la Secretaría de Salud aún no tiene fuente y no la mostramos, y no hicimos pruebas con público, porque el reto no lo permite."
 
 Mostrar en pantalla: `docs/evidencia/resultados-pruebas.md`.
 
@@ -50,5 +50,6 @@ Mostrar en pantalla: `docs/evidencia/resultados-pruebas.md`.
 
 - **¿Por qué no un chatbot con IA?** → Porque el reto prohíbe que actúe como profesional, y porque un árbol de reglas es auditable: cualquiera puede ver por qué se recomienda algo.
 - **¿Cómo se enteran si una línea deja de funcionar?** → Por la verificación semanal; y si nadie la verifica, se oculta sola a los 31 días. No recibimos reportes dentro de la app para no guardar datos de nadie.
+- **¿Y si nadie verifica y la persona ve la pantalla vacía?** → Hoy no pasa: los datos se verificaron el 21 de octubre y se muestran hasta el 20 de noviembre. Si vencen, la app no deja la pantalla vacía: remite al directorio oficial de MinSalud y a urgencias. En operación proponemos que las líneas nacionales (123 y 106), que cambian muy poco, sigan visibles con la etiqueta "verificación vencida", sin presentarlas como vigentes.
 - **¿Cómo sabemos que la app no muestra datos viejos?** → Por los casos CP-04 y CP-05: el día 30 el dato se muestra y el día 31 se oculta, sin intervención humana.
 - **¿Guardan datos?** → No. No hay registro, y las respuestas del orientador se borran al reiniciar.

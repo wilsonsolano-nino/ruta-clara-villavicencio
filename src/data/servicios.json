@@ -4,67 +4,89 @@
     {
       "id": "linea-106",
       "nombre": "Línea 106 · Línea nacional de salud mental",
-      "descripcion": "Línea telefónica de orientación en salud mental, disponible todo el día.",
+      "descripcion": "Línea Nacional de Teleorientación en Salud Mental del Ministerio de Salud. Gratuita y confidencial, por llamada o videollamada con cita previa.",
       "ambito": "nacional",
-      "canales": [{ "tipo": "llamada", "valor": "106", "etiqueta": "Llamar al 106" }],
-      "horario": "24 horas, 7 días",
-      "costo": "Gratuita",
-      "fuente": {
-        "nombre": "Directorio de salud mental y prevención del suicidio, MinSalud",
-        "url": ""
-      },
-      "fechaVerificacion": "2026-10-19",
-      "verificadoPor": "Organización de la Hackathon (citado en el kickoff, diapositiva 12)"
-    },
-    {
-      "id": "yo-te-escucho",
-      "nombre": "Yo Te Escucho Villavicencio",
-      "descripcion": "Línea de la Alcaldía de Villavicencio para escucha y orientación, por llamada y WhatsApp.",
-      "ambito": "villavicencio",
       "canales": [
-        { "tipo": "llamada", "valor": "3163907010", "etiqueta": "Llamar al 316 390 7010" },
-        { "tipo": "whatsapp", "valor": "573163907010", "etiqueta": "Escribir por WhatsApp" }
+        {
+          "tipo": "llamada",
+          "valor": "106",
+          "etiqueta": "Llamar al 106"
+        }
       ],
       "horario": "24 horas, 7 días",
       "costo": "Gratuita",
       "fuente": {
-        "nombre": "Directorio de salud mental y prevención del suicidio, MinSalud",
-        "url": ""
+        "nombre": "Línea 106, página oficial del Ministerio de Salud y Protección Social",
+        "url": "https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx"
       },
-      "fechaVerificacion": "2026-10-19",
-      "verificadoPor": "Organización de la Hackathon (citado en el kickoff, diapositiva 12)"
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta de la página oficial de MinSalud)"
     },
     {
-      "id": "linea-018000931089",
-      "nombre": "Línea gratuita 01 8000 (titular por confirmar)",
-      "descripcion": "Número listado en el kickoff junto a las líneas de apoyo. Falta confirmar en la fuente original a qué entidad pertenece.",
-      "ambito": "nacional",
-      "canales": [{ "tipo": "llamada", "valor": "018000931089", "etiqueta": "Llamar al 01 8000 931 089" }],
-      "horario": "Por confirmar",
+      "id": "yo-te-escucho",
+      "nombre": "Yo Te Escucho Villavicencio",
+      "descripcion": "Línea territorial de Villavicencio para escucha y orientación, por llamada y WhatsApp. También atiende en la línea gratuita 01 8000 931 089.",
+      "ambito": "villavicencio",
+      "canales": [
+        {
+          "tipo": "llamada",
+          "valor": "3163907010",
+          "etiqueta": "Llamar al 316 390 7010"
+        },
+        {
+          "tipo": "llamada",
+          "valor": "018000931089",
+          "etiqueta": "Llamar gratis al 01 8000 931 089"
+        },
+        {
+          "tipo": "whatsapp",
+          "valor": "573163907010",
+          "etiqueta": "Escribir por WhatsApp"
+        }
+      ],
+      "horario": "24 horas, 7 días",
       "costo": "Gratuita",
-      "fuente": null,
-      "fechaVerificacion": null,
-      "verificadoPor": null
+      "fuente": {
+        "nombre": "Directorio Nacional de Líneas Territoriales de Atención en Salud Mental, MinSalud (agosto 2025)",
+        "url": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta del directorio de MinSalud, página 9: Meta, Villavicencio)"
     },
     {
       "id": "linea-123",
       "nombre": "Línea 123 · Emergencias",
-      "descripcion": "Número único de emergencias. Pendiente de registrar fuente oficial y fecha de consulta.",
+      "descripcion": "Número único nacional de emergencias. La llamada no tiene costo.",
       "ambito": "nacional",
-      "canales": [{ "tipo": "llamada", "valor": "123", "etiqueta": "Llamar al 123" }],
+      "canales": [
+        {
+          "tipo": "llamada",
+          "valor": "123",
+          "etiqueta": "Llamar al 123"
+        }
+      ],
       "horario": "24 horas, 7 días",
       "costo": "Gratuita",
       "emergencia": true,
-      "fuente": null,
-      "fechaVerificacion": null,
-      "verificadoPor": null
+      "fuente": {
+        "nombre": "Comisión de Regulación de Comunicaciones, Resolución CRC 5937 de 2020 (numeración 1XY: 123, Número Único de Emergencias)",
+        "url": "https://cancilleria.gov.co/sites/default/files/Normograma/docs/resolucion_crc_5937_2020.htm"
+      },
+      "fechaVerificacion": "2026-10-21",
+      "verificadoPor": "Equipo Ruta Clara (consulta de la regulación de la CRC)"
     },
     {
       "id": "secretaria-salud-villavicencio",
       "nombre": "Secretaría Local de Salud de Villavicencio · atención presencial",
       "descripcion": "Información presencial sobre rutas de atención en salud mental del municipio. Dirección y horario pendientes de verificar.",
       "ambito": "villavicencio",
-      "canales": [{ "tipo": "presencial", "valor": "", "etiqueta": "Ver dirección" }],
+      "canales": [
+        {
+          "tipo": "presencial",
+          "valor": "",
+          "etiqueta": "Ver dirección"
+        }
+      ],
       "horario": "Por confirmar",
       "costo": "Gratuita",
       "fuente": null,

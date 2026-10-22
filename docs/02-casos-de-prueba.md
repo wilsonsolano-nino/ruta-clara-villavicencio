@@ -44,8 +44,8 @@
 
 | ID | Escenario | Resultado esperado |
 |---|---|---|
-| CP-19 | `servicios.json` real | Todo lo mostrable tiene fuente, fecha y responsable |
-| CP-20 | Datos sin fuente (123, 01 8000) | Quedan "por verificar" y no se exponen |
+| CP-19 | `servicios.json` real | Todo lo mostrable tiene fuente con enlace oficial (`.gov.co`), fecha y responsable |
+| CP-20 | Datos con y sin fuente | Lo que no tiene fuente (Secretaría de Salud) queda "por verificar" y no se expone; 123, 106 y Yo Te Escucho se muestran |
 | CP-21 | Integridad | IDs únicos y al menos un canal por servicio |
 | CP-22 | `recursos.json` real | Cada guía tiene pautas, al menos una fuente con enlace https y una fecha de consulta válida |
 | CP-23 | Salvaguarda de lenguaje en las guías | No contienen diagnóstico, síntoma, trastorno, tratamiento, medicamento ni escala |
@@ -63,8 +63,8 @@
 ## Limitaciones identificadas (honestidad técnica)
 
 1. **Un punto del mapa no es exacto.** Monte Sinaí sede principal se ubicó con un directorio público. La app lo dice en ese lugar; falta confirmarlo en sitio.
-2. **La verificación de los datos reales depende del kickoff.** Los dos números vigentes vienen de la diapositiva 12, que cita el directorio de MinSalud. Falta registrar la URL directa de la fuente.
-3. **123 y 01 8000 931 089 están "por verificar".** Por diseño no se muestran hasta tener fuente y fecha. Por eso el flujo de emergencia hoy solo muestra 106 y Yo Te Escucho.
+2. **Los datos vencen si nadie los verifica.** Los teléfonos se verificaron el 21 oct 2026 y se muestran hasta el 20 nov 2026. Sin la verificación semanal del plan de operación, la app los oculta y remite al directorio oficial de MinSalud.
+3. **La Secretaría Local de Salud sigue "por verificar".** Falta su dirección y horario en una fuente oficial; por diseño no se muestra.
 4. **La fecha depende del reloj del dispositivo.** Un reloj mal configurado altera la vigencia. Mitigación futura: tomar la fecha del servidor.
 5. **El mapa depende de Google Maps.** Si Google no carga (sin internet o bloqueado), la lista de lugares con teléfono y dirección sigue funcionando.
 6. **No hay pruebas con usuarios reales.** Es una restricción del reto. La usabilidad se infiere de buenas prácticas de accesibilidad, no de pruebas con público.
